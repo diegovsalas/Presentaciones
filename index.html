@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Presentación Ejecutiva - Pestex (Efecto Drop Shadow)</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    
+    <style>
+        /* =========================================
+           ESTILOS GENERALES Y NAVEGACIÓN
+           ========================================= */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e2e8f0; /* Fondo ligeramente más oscuro para que el blanco de las tarjetas resalte más */
+            font-family: 'Open Sans', sans-serif;
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .slide-wrapper {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            scroll-snap-align: start;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            background-color: #f8fafc; /* Fondo general de la diapositiva */
+            flex-shrink: 0;
+            /* Sombra profunda para el lienzo completo de la presentación */
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            transform-origin: center center;
+            overflow: hidden;
+        }
+
+        /* =========================================
+           EFECTOS DROP SHADOW 3D
+           ========================================= */
+        /* Sombra flotante profunda para contenedores y tarjetas principales */
+        .drop-3d {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15), 0 10px 15px rgba(0,0,0,0.1) !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        /* Efecto Hover: La tarjeta se "eleva" al pasar el cursor */
+        .drop-3d:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.2), 0 15px 20px rgba(0,0,0,0.15) !important;
+        }
+
+        /* Sombra flotante más sutil para tarjetas interiores */
+        .drop-3d-sm {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.05) !important;
+        }
+
+        /* Normalización de textos y listas */
+        p, h1, h2, h3, ul, li { margin: 0; padding: 0; }
+        ul { list-style-type: none; }
+        .slide-container li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 6px;
+        }
+        .slide-container li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: currentColor;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="slide-wrapper">
+        <div class="slide-container">
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 100px; background-color: #002060; z-index: 1;"></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 100px; width: 1280px; height: 10px; background-color: #00b0f0; z-index: 1;"></div>
+            
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 25px; width: 1160px; height: 60px; z-index: 10;">
+                <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 36px; color: #ffffff; margin: 0; text-transform: uppercase;">Resumen Ejecutivo del Portafolio</h1>
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 18px; color: #e1e8f0; margin-top: 5px;">Estatus General de Cuentas Clave y Operación</p>
+            </div>
+            
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 140px; width: 330px; height: 40px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #002060; border-bottom: 3px solid #00b0f0; padding-bottom: 5px; display: inline-block;">Composición del Portafolio</p>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 60px; top: 195px; width: 360px; height: 140px; background-color: #ffffff; border-radius: 8px; border-left: 5px solid #002060; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 80px; top: 215px; width: 40px; height: 40px; z-index: 10; color: #002060; font-size: 32px; text-align: center;"><i class="fas fa-shopping-cart"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 135px; top: 215px; width: 260px; height: 100px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #002060; margin-bottom: 5px;">Retail</p>
+                <p style="font-size: 14px; color: #4a5568; line-height: 1.4;">Gestión activa de grandes cuentas: <strong>Soriana y Walmart</strong>.</p>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 60px; top: 355px; width: 360px; height: 140px; background-color: #ffffff; border-radius: 8px; border-left: 5px solid #002060; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 80px; top: 375px; width: 40px; height: 40px; z-index: 10; color: #002060; font-size: 32px; text-align: center;"><i class="fas fa-building"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 135px; top: 375px; width: 260px; height: 100px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #002060; margin-bottom: 5px;">Corporativo / Industrial</p>
+                <p style="font-size: 14px; color: #4a5568; line-height: 1.4;">Clientes industriales clave: <strong>Colliers Iberdrola y ABP</strong>.</p>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 60px; top: 515px; width: 360px; height: 140px; background-color: #ffffff; border-radius: 8px; border-left: 5px solid #002060; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 80px; top: 535px; width: 40px; height: 40px; z-index: 10; color: #002060; font-size: 32px; text-align: center;"><i class="fas fa-home"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 135px; top: 535px; width: 260px; height: 100px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #002060; margin-bottom: 5px;">Residencial</p>
+                <p style="font-size: 14px; color: #4a5568; line-height: 1.4;">Atención especializada al sector residencial y condominal.</p>
+            </div>
+
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 460px; top: 140px; width: 350px; height: 40px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #002060; border-bottom: 3px solid #00b0f0; padding-bottom: 5px; display: inline-block;">Volumen de Operación Core</p>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 460px; top: 195px; width: 360px; height: 220px; background-color: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 485px; top: 220px; width: 40px; height: 40px; z-index: 10; color: #d63384; font-size: 28px;"><i class="fas fa-store"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 535px; top: 220px; width: 270px; height: 30px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #d63384;">SORIANA</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 485px; top: 260px; width: 310px; height: 130px; z-index: 10; text-align: center;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 72px; color: #2d3748; line-height: 1;">87</p>
+                <p style="font-size: 14px; color: #718096; text-transform: uppercase; font-weight: 600; margin-bottom: 15px;">Sucursales</p>
+                <p style="font-size: 13px; color: #4a5568; background-color: #f7fafc; padding: 5px; border-radius: 4px; display: inline-block;">Monitoreo y control quincenal</p>
+            </div>
+
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 460px; top: 435px; width: 360px; height: 220px; background-color: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 485px; top: 460px; width: 40px; height: 40px; z-index: 10; color: #0071dc; font-size: 28px;"><i class="fas fa-cart-arrow-down"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 535px; top: 460px; width: 270px; height: 30px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #0071dc;">WALMART</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 485px; top: 500px; width: 310px; height: 130px; z-index: 10; text-align: center;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 72px; color: #2d3748; line-height: 1;">39</p>
+                <p style="font-size: 14px; color: #718096; text-transform: uppercase; font-weight: 600; margin-bottom: 15px;">Unidades</p>
+                <p style="font-size: 13px; color: #4a5568; background-color: #f7fafc; padding: 5px; border-radius: 4px; display: inline-block;">Alta exigencia de auditoría y reportes</p>
+            </div>
+
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 860px; top: 140px; width: 350px; height: 40px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #002060; border-bottom: 3px solid #00b0f0; padding-bottom: 5px; display: inline-block;">Herramientas y Trazabilidad</p>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 860px; top: 195px; width: 360px; height: 460px; background-color: #002060; border-radius: 8px; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 890px; top: 230px; width: 40px; height: 40px; z-index: 10; color: #00b0f0; font-size: 28px;"><i class="fas fa-map-marker-alt"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 940px; top: 225px; width: 250px; height: 80px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #ffffff; margin-bottom: 5px;">Igeo</p>
+                <p style="font-size: 14px; color: #e1e8f0;">Plataforma de geolocalización para seguimiento en tiempo real.</p>
+            </div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 890px; top: 310px; width: 300px; height: 1px; background-color: #2c4a80; z-index: 5;"></div>
+            
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 890px; top: 345px; width: 40px; height: 40px; z-index: 10; color: #00b0f0; font-size: 28px;"><i class="fas fa-cloud-upload-alt"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 940px; top: 340px; width: 250px; height: 80px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #ffffff; margin-bottom: 5px;">OneDrive</p>
+                <p style="font-size: 14px; color: #e1e8f0;">Gestión documental centralizada (Crucial para Walmart).</p>
+            </div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 890px; top: 425px; width: 300px; height: 1px; background-color: #2c4a80; z-index: 5;"></div>
+            
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 890px; top: 460px; width: 40px; height: 40px; z-index: 10; color: #00b0f0; font-size: 28px;"><i class="fas fa-route"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 940px; top: 455px; width: 250px; height: 80px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #ffffff; margin-bottom: 5px;">Dueños de Ruta</p>
+                <p style="font-size: 14px; color: #e1e8f0;">Control estricto de rutas asignadas a técnicos responsables.</p>
+            </div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 860px; top: 600px; width: 360px; height: 55px; background-color: #001540; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; z-index: 5;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 880px; top: 615px; width: 320px; height: 30px; z-index: 10; text-align: center;">
+                <p style="font-size: 12px; color: #a0aec0; letter-spacing: 1px; text-transform: uppercase;">Eficiencia Operativa</p>
+            </div>
+
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 670px; width: 400px; height: 30px; z-index: 10;"><p style="font-size: 12px; color: #718096;">Confidencial - Uso Interno Solamente</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 1100px; top: 670px; width: 120px; height: 30px; z-index: 10; text-align: right;"><p style="font-size: 12px; color: #718096;">Pág. 1</p></div>
+        </div>
+    </section>
+
+    <section class="slide-wrapper">
+        <div class="slide-container">
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 100px; background-color: #002060; z-index: 1;"></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 100px; width: 1280px; height: 10px; background-color: #00b0f0; z-index: 1;"></div>
+            
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 25px; width: 1160px; height: 60px; z-index: 10;">
+                <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 36px; color: #ffffff; margin: 0; text-transform: uppercase;">Cuentas Retail: Nivel de Exigencia y SLA</h1>
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 18px; color: #e1e8f0; margin-top: 5px;">Gestión de Grandes Superficies: Soriana y Walmart</p>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 60px; top: 140px; width: 560px; height: 500px; background-color: #ffffff; border-radius: 8px; border-top: 6px solid #d63384; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 90px; top: 165px; width: 40px; height: 40px; z-index: 10; color: #d63384; font-size: 32px;"><i class="fas fa-store"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 140px; top: 165px; width: 300px; height: 40px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 24px; color: #d63384;">SORIANA</p></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 420px; top: 160px; width: 180px; height: 36px; background-color: #d63384; border-top-left-radius: 18px; border-bottom-left-radius: 18px; z-index: 5;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 435px; top: 168px; width: 160px; height: 30px; z-index: 10;"><p style="font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 13px; color: #ffffff;">Vence: Dic 2026</p></div>
+            
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 90px; top: 220px; width: 500px; height: 110px; background-color: #fcfcfc; border-radius: 6px; border: 1px solid #fce7f3; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 110px; top: 235px; width: 30px; height: 30px; z-index: 10; color: #d63384; font-size: 20px;"><i class="fas fa-clock"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 150px; top: 235px; width: 420px; height: 80px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: #2d3748; margin-bottom: 5px;">Operación Nocturna</p>
+                <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #4a5568; line-height: 1.5;"><li>Inicio: 18:30 hrs.</li><li>Formatos: Hiper (~3 hrs), Super, City, Mercado.</li><li>Excepción: Servicios abiertos para formato Mall.</li></ul>
+            </div>
+            
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 90px; top: 345px; width: 500px; height: 135px; background-color: #fcfcfc; border-radius: 6px; border: 1px solid #fce7f3; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 110px; top: 360px; width: 30px; height: 30px; z-index: 10; color: #d63384; font-size: 20px;"><i class="fas fa-clipboard-check"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 150px; top: 360px; width: 420px; height: 90px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: #2d3748; margin-bottom: 5px;">Entregables Requeridos</p>
+                <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #4a5568; line-height: 1.5;"><li>Hoja de servicio firmada y sellada.</li><li>Certificados vigentes.</li><li>Evidencia fotográfica (áreas y puntos de control).</li><li>Folios de validación: Firo y Migo.</li></ul>
+            </div>
+            
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 90px; top: 495px; width: 500px; height: 130px; background-color: #fcfcfc; border-radius: 6px; border: 1px solid #fce7f3; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 240px; top: 520px; width: 200px; height: 80px; z-index: 10; color: #f8bbd0; font-size: 60px; text-align: center; opacity: 0.3;"><i class="fas fa-shopping-basket"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 110px; top: 535px; width: 460px; height: 60px; z-index: 10; text-align: center;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; color: #880e4f;">ENFOQUE EN CUMPLIMIENTO</p>
+                <p style="font-size: 12px; color: #666; margin-top: 5px;">Validación rigurosa mediante folios digitales y físicos</p>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 660px; top: 140px; width: 560px; height: 500px; background-color: #ffffff; border-radius: 8px; border-top: 6px solid #0071dc; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 690px; top: 165px; width: 40px; height: 40px; z-index: 10; color: #0071dc; font-size: 32px;"><i class="fas fa-shopping-cart"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 740px; top: 165px; width: 300px; height: 40px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 24px; color: #0071dc;">WALMART</p></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 1020px; top: 160px; width: 180px; height: 36px; background-color: #0071dc; border-top-left-radius: 18px; border-bottom-left-radius: 18px; z-index: 5;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 1035px; top: 168px; width: 160px; height: 30px; z-index: 10;"><p style="font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 13px; color: #ffffff;">39 Unidades Activas</p></div>
+            
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 690px; top: 220px; width: 500px; height: 125px; background-color: #fcfcfc; border-radius: 6px; border: 1px solid #e1effe; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 710px; top: 235px; width: 30px; height: 30px; z-index: 10; color: #0071dc; font-size: 20px;"><i class="fas fa-file-invoice"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 750px; top: 235px; width: 420px; height: 110px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: #2d3748; margin-bottom: 5px;">Alta Documentación (6 Tipos)</p>
+                <p style="font-size: 13px; color: #4a5568; margin-bottom: 5px;"><strong>Entrega Semanal:</strong> Base de tendencias (Miércoles)</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 5px;"><span style="font-size: 11px; background-color: #e1effe; color: #004488; padding: 2px 6px; border-radius: 3px;">Certificados</span><span style="font-size: 11px; background-color: #e1effe; color: #004488; padding: 2px 6px; border-radius: 3px;">Plan de Acción</span><span style="font-size: 11px; background-color: #e1effe; color: #004488; padding: 2px 6px; border-radius: 3px;">Reporte 360</span><span style="font-size: 11px; background-color: #e1effe; color: #004488; padding: 2px 6px; border-radius: 3px;">Auditoría</span><span style="font-size: 11px; background-color: #e1effe; color: #004488; padding: 2px 6px; border-radius: 3px;">Check List</span><span style="font-size: 11px; background-color: #e1effe; color: #004488; padding: 2px 6px; border-radius: 3px;">Plan Oportunidades</span></div>
+            </div>
+            
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 690px; top: 360px; width: 500px; height: 120px; background-color: #fff1f2; border-radius: 6px; border: 1px solid #fecaca; border-left: 4px solid #ef4444; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 710px; top: 375px; width: 30px; height: 30px; z-index: 10; color: #ef4444; font-size: 20px;"><i class="fas fa-exclamation-triangle"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 750px; top: 375px; width: 420px; height: 70px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: #991b1b; margin-bottom: 5px;">Protocolo Crítico: Paro de Proceso</p>
+                <p style="font-size: 14px; color: #7f1d1d;">Automático si se detecta plaga en áreas de perecederos o carnes (Proveedor/Auditor).</p>
+            </div>
+            
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 690px; top: 495px; width: 500px; height: 135px; background-color: #fcfcfc; border-radius: 6px; border: 1px solid #e1effe; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 710px; top: 510px; width: 30px; height: 30px; z-index: 10; color: #0071dc; font-size: 20px;"><i class="fas fa-file-invoice-dollar"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 750px; top: 510px; width: 420px; height: 100px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: #2d3748; margin-bottom: 5px;">Facturación</p>
+                <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #4a5568; line-height: 1.5;"><li>Dependiente de carga completa en carpetas digitales.</li><li>Plataforma: <strong>OneDrive</strong>.</li><li>Fecha Límite: <strong>Día 15</strong> de cada mes.</li><li>Alineación estricta con Órdenes de Compra.</li></ul>
+            </div>
+            
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 670px; width: 400px; height: 30px; z-index: 10;"><p style="font-size: 12px; color: #718096;">Confidencial - Uso Interno Solamente</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 1100px; top: 670px; width: 120px; height: 30px; z-index: 10; text-align: right;"><p style="font-size: 12px; color: #718096;">Pág. 2</p></div>
+        </div>
+    </section>
+
+    <section class="slide-wrapper">
+        <div class="slide-container">
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 100px; background-color: #002060; z-index: 1;"></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 100px; width: 1280px; height: 10px; background-color: #00b0f0; z-index: 1;"></div>
+            
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 25px; width: 1160px; height: 60px; z-index: 10;">
+                <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 36px; color: #ffffff; margin: 0; text-transform: uppercase;">Cuentas Corporativas e Industriales</h1>
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 18px; color: #e1e8f0; margin-top: 5px;">Estructura de Servicio B2B</p>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 60px; top: 140px; width: 560px; height: 260px; background-color: #ffffff; border-radius: 8px; border-top: 5px solid #2e7d32; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 90px; top: 165px; width: 40px; height: 40px; z-index: 10; color: #2e7d32; font-size: 28px;"><i class="fas fa-industry"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 140px; top: 165px; width: 330px; height: 35px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #2e7d32;">COLLIERS IBERDROLA</p></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 480px; top: 165px; width: 110px; height: 26px; background-color: #e8f5e9; border-radius: 13px; z-index: 2;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 480px; top: 168px; width: 110px; height: 20px; z-index: 10; text-align: center;"><p style="font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 12px; color: #2e7d32;">NACIONAL</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 90px; top: 215px; width: 500px; height: 100px; z-index: 10;">
+                <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #4a5568; line-height: 1.6;"><li><strong>3 Plantas:</strong> Qro, Mty, Tampico.</li><li><strong>2 Corporativos:</strong> CDMX.</li><li><strong>4 Oficinas Foráneas:</strong> Cobertura regional.</li></ul>
+            </div>
+            
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 90px; top: 310px; width: 500px; height: 60px; background-color: #ffebee; border-left: 4px solid #c62828; border-radius: 4px; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 105px; top: 325px; width: 30px; height: 30px; z-index: 10; color: #c62828; font-size: 20px;"><i class="fas fa-camera-retro"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 145px; top: 320px; width: 430px; height: 40px; z-index: 10;">
+                <p style="font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 13px; color: #c62828; margin-bottom: 2px;">RESTRICCIÓN ESTRICTA</p>
+                <p style="font-family: 'Open Sans', sans-serif; font-size: 13px; color: #b71c1c;">No se permiten fotografías en instalaciones.</p>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 660px; top: 140px; width: 560px; height: 260px; background-color: #ffffff; border-radius: 8px; border-top: 5px solid #455a64; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 690px; top: 165px; width: 40px; height: 40px; z-index: 10; color: #455a64; font-size: 28px;"><i class="fas fa-warehouse"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 740px; top: 165px; width: 300px; height: 35px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #455a64;">ABP</p></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 1080px; top: 165px; width: 110px; height: 26px; background-color: #eceff1; border-radius: 13px; z-index: 2;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 1080px; top: 168px; width: 110px; height: 20px; z-index: 10; text-align: center;"><p style="font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 12px; color: #455a64;">EDOMEX</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 690px; top: 215px; width: 500px; height: 160px; z-index: 10;">
+                <div style="margin-bottom: 15px;"><p style="font-weight: 700; font-size: 14px; color: #37474f; margin-bottom: 5px;">Frecuencia de Servicio:</p><ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #4a5568;"><li><strong>Bodegas:</strong> Servicio Semanal.</li><li><strong>Residencias:</strong> Servicio Mensual.</li></ul></div>
+                <div><p style="font-weight: 700; font-size: 14px; color: #37474f; margin-bottom: 5px;">Control Administrativo:</p><ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #4a5568;"><li>4 Órdenes de servicio (Miércoles).</li><li>Bitácora de equipos actualizada.</li></ul></div>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 60px; top: 420px; width: 560px; height: 230px; background-color: #ffffff; border-radius: 8px; border-top: 5px solid #00897b; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 90px; top: 445px; width: 40px; height: 40px; z-index: 10; color: #00897b; font-size: 28px;"><i class="fas fa-hotel"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 140px; top: 445px; width: 450px; height: 35px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #00897b;">HOLIDAY INN CHILPANCINGO</p></div>
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 90px; top: 500px; width: 240px; height: 110px; background-color: #fcfcfc; border-radius: 6px; border: 1px solid #e0f2f1; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 105px; top: 515px; width: 30px; height: 30px; z-index: 10; color: #00695c; font-size: 20px;"><i class="fas fa-utensils"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 140px; top: 515px; width: 180px; height: 80px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: #004d40; margin-bottom: 5px;">Área Cocina</p><p style="font-size: 13px; color: #00695c;">Viernes</p><p style="font-size: 12px; color: #004d40; margin-top: 5px;">Duración: 4-5 hrs</p></div>
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 350px; top: 500px; width: 240px; height: 110px; background-color: #fcfcfc; border-radius: 6px; border: 1px solid #e0f2f1; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 365px; top: 515px; width: 30px; height: 30px; z-index: 10; color: #00695c; font-size: 20px;"><i class="fas fa-bed"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 400px; top: 515px; width: 180px; height: 80px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: #004d40; margin-bottom: 5px;">Habitaciones</p><p style="font-size: 13px; color: #00695c;">Sábado</p><p style="font-size: 12px; color: #004d40; margin-top: 5px;">Servicio segmentado</p></div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 660px; top: 420px; width: 560px; height: 230px; background-color: #ffffff; border-radius: 8px; border-top: 5px solid #d84315; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 690px; top: 445px; width: 40px; height: 40px; z-index: 10; color: #d84315; font-size: 28px;"><i class="fas fa-store-alt"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 740px; top: 445px; width: 300px; height: 35px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #d84315;">YAOFOOD</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 690px; top: 495px; width: 500px; height: 40px; z-index: 10;"><p style="font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 14px; color: #5d4037; border-bottom: 1px solid #d7ccc8; padding-bottom: 5px;">Cobertura Mixta</p></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 690px; top: 545px; width: 30px; height: 30px; z-index: 10; color: #d84315; font-size: 20px;"><i class="fas fa-calendar-alt"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 730px; top: 545px; width: 200px; height: 60px; z-index: 10;"><p style="font-weight: 700; font-size: 14px; color: #3e2723;">Restaurante</p><p style="font-size: 13px; color: #5d4037;">Servicio Mensual</p></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 950px; top: 545px; width: 30px; height: 30px; z-index: 10; color: #d84315; font-size: 20px;"><i class="fas fa-truck"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 990px; top: 545px; width: 200px; height: 60px; z-index: 10;"><p style="font-weight: 700; font-size: 14px; color: #3e2723;">Flotilla (3 Unidades)</p><p style="font-size: 13px; color: #5d4037;">Servicio Bimestral</p></div>
+            
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 670px; width: 400px; height: 30px; z-index: 10;"><p style="font-size: 12px; color: #718096;">Confidencial - Uso Interno Solamente</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 1100px; top: 670px; width: 120px; height: 30px; z-index: 10; text-align: right;"><p style="font-size: 12px; color: #718096;">Pág. 3</p></div>
+        </div>
+    </section>
+
+    <section class="slide-wrapper">
+        <div class="slide-container">
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 100px; background-color: #002060; z-index: 1;"></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 100px; width: 1280px; height: 10px; background-color: #00b0f0; z-index: 1;"></div>
+            
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 25px; width: 1160px; height: 60px; z-index: 10;">
+                <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 36px; color: #ffffff; margin: 0; text-transform: uppercase;">Gestión de Riesgos y Alertas de Churn</h1>
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 18px; color: #e1e8f0; margin-top: 5px;">Semáforo de Riesgos y Renovaciones</p>
+            </div>
+            
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 60px; top: 140px; width: 560px; height: 40px; background-color: #ffebee; border-left: 5px solid #d32f2f; border-radius: 4px; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 75px; top: 148px; width: 24px; height: 24px; z-index: 10; color: #d32f2f; font-size: 18px;"><i class="fas fa-circle"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 110px; top: 148px; width: 400px; height: 30px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: #b71c1c; letter-spacing: 0.5px;">RIESGO CRÍTICO / CANCELACIÓN</p></div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 60px; top: 200px; width: 560px; height: 240px; background-color: #ffffff; border: 1px solid #ffcdd2; border-top: 4px solid #d32f2f; border-radius: 8px; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 90px; top: 225px; width: 40px; height: 40px; z-index: 10; color: #d32f2f; font-size: 28px;"><i class="fas fa-exclamation-triangle"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 140px; top: 225px; width: 450px; height: 30px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #b71c1c;">Colliers Iberdrola</p></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 450px; top: 225px; width: 140px; height: 26px; background-color: #ffebee; border-radius: 13px; z-index: 2;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 450px; top: 228px; width: 140px; height: 20px; z-index: 10; text-align: center;"><p style="font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 11px; color: #c62828;">RIESGO OPERATIVO</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 140px; top: 265px; width: 450px; height: 160px; z-index: 10;">
+                <p style="font-family: 'Open Sans', sans-serif; font-size: 14px; color: #37474f; margin-bottom: 10px; font-weight: 600;">Riesgo de inconformidad por documentación incompleta.</p>
+                <div style="background-color: #fff5f5; padding: 10px; border-radius: 6px; border-left: 3px solid #ef5350;">
+                    <p style="font-size: 13px; color: #b71c1c; font-weight: 700; margin-bottom: 5px;">Requerimientos Urgentes:</p>
+                    <ul style="font-size: 13px; color: #c62828; line-height: 1.5;"><li>SUA Actualizado</li><li>Alta del IMSS</li><li>Certificados médicos vigentes</li></ul>
+                </div>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 60px; top: 460px; width: 560px; height: 180px; background-color: #ffffff; border: 1px solid #ffcdd2; border-top: 4px solid #d32f2f; border-radius: 8px; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 90px; top: 485px; width: 40px; height: 40px; z-index: 10; color: #d32f2f; font-size: 28px;"><i class="fas fa-ban"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 140px; top: 485px; width: 450px; height: 30px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #b71c1c;">Grupo Adel</p></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 450px; top: 485px; width: 140px; height: 26px; background-color: #ffebee; border-radius: 13px; z-index: 2;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 450px; top: 488px; width: 140px; height: 20px; z-index: 10; text-align: center;"><p style="font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 11px; color: #c62828;">CANCELACIÓN</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 140px; top: 525px; width: 450px; height: 100px; z-index: 10;">
+                <ul style="font-size: 14px; color: #4a5568; line-height: 1.6;"><li><strong>Impacto:</strong> 4 Camionetas (Flotilla).</li><li><strong>Estatus:</strong> Inactivo.</li><li><strong>Último registro:</strong> Mayo (Sin actividad reciente).</li></ul>
+            </div>
+            
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 660px; top: 140px; width: 560px; height: 40px; background-color: #fffde7; border-left: 5px solid #fbc02d; border-radius: 4px; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 675px; top: 148px; width: 24px; height: 24px; z-index: 10; color: #fbc02d; font-size: 18px;"><i class="fas fa-circle"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 710px; top: 148px; width: 400px; height: 30px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: #f57f17; letter-spacing: 0.5px;">ALERTA PREVENTIVA / SEGUIMIENTO</p></div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 660px; top: 200px; width: 560px; height: 240px; background-color: #ffffff; border: 1px solid #fff9c4; border-top: 4px solid #fbc02d; border-radius: 8px; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 690px; top: 225px; width: 40px; height: 40px; z-index: 10; color: #fbc02d; font-size: 28px;"><i class="fas fa-sync-alt"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 740px; top: 225px; width: 450px; height: 30px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #f57f17;">Renovaciones Próximas</p></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 1050px; top: 225px; width: 140px; height: 26px; background-color: #fffde7; border-radius: 13px; z-index: 2;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 1050px; top: 228px; width: 140px; height: 20px; z-index: 10; text-align: center;"><p style="font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 11px; color: #f9a825;">DICIEMBRE</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 740px; top: 265px; width: 450px; height: 160px; z-index: 10;">
+                <p style="font-family: 'Open Sans', sans-serif; font-size: 14px; color: #37474f; margin-bottom: 15px;">Atención prioritaria para asegurar continuidad del servicio en plazas clave.</p>
+                <div style="display: flex; gap: 10px;">
+                    <div style="background-color: #fffde7; padding: 8px 15px; border-radius: 4px; border: 1px solid #fff59d; width: 130px; text-align: center;"><i class="fas fa-map-marker-alt" style="color: #fbc02d; font-size: 14px; margin-bottom: 5px; display: block;"></i><p style="font-size: 12px; font-weight: 600; color: #5d4037;">Cd. Madero</p></div>
+                    <div style="background-color: #fffde7; padding: 8px 15px; border-radius: 4px; border: 1px solid #fff59d; width: 130px; text-align: center;"><i class="fas fa-map-marker-alt" style="color: #fbc02d; font-size: 14px; margin-bottom: 5px; display: block;"></i><p style="font-size: 12px; font-weight: 600; color: #5d4037;">Tampico</p></div>
+                    <div style="background-color: #fffde7; padding: 8px 15px; border-radius: 4px; border: 1px solid #fff59d; width: 130px; text-align: center;"><i class="fas fa-map-marker-alt" style="color: #fbc02d; font-size: 14px; margin-bottom: 5px; display: block;"></i><p style="font-size: 12px; font-weight: 600; color: #5d4037;">Monterrey 1</p></div>
+                </div>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 660px; top: 460px; width: 560px; height: 180px; background-color: #ffffff; border: 1px solid #fff9c4; border-top: 4px solid #fbc02d; border-radius: 8px; z-index: 1;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 690px; top: 485px; width: 40px; height: 40px; z-index: 10; color: #fbc02d; font-size: 28px;"><i class="fas fa-user-clock"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 740px; top: 485px; width: 450px; height: 30px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #f57f17;">Validación Pendiente</p></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 1050px; top: 485px; width: 140px; height: 26px; background-color: #fffde7; border-radius: 13px; z-index: 2;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 1050px; top: 488px; width: 140px; height: 20px; z-index: 10; text-align: center;"><p style="font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 11px; color: #f9a825;">NUEVOS CLIENTES</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 740px; top: 525px; width: 450px; height: 100px; z-index: 10;">
+                <p style="font-size: 13px; color: #5d4037; font-weight: 600; margin-bottom: 5px;">Confirmar estatus de servicio:</p>
+                <ul style="font-size: 14px; color: #4a5568; line-height: 1.6;"><li>Brando Grua</li><li>Buen Hogar Graco</li><li>Rosemberg Monterrey</li></ul>
+            </div>
+            
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 670px; width: 400px; height: 30px; z-index: 10;"><p style="font-size: 12px; color: #718096;">Confidencial - Uso Interno Solamente</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 1100px; top: 670px; width: 120px; height: 30px; z-index: 10; text-align: right;"><p style="font-size: 12px; color: #718096;">Pág. 4</p></div>
+        </div>
+    </section>
+
+    <section class="slide-wrapper">
+        <div class="slide-container">
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 100px; background-color: #002060; z-index: 1;"></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 100px; width: 1280px; height: 10px; background-color: #00b0f0; z-index: 1;"></div>
+            
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 25px; width: 1160px; height: 60px; z-index: 10;">
+                <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 36px; color: #ffffff; margin: 0; text-transform: uppercase;">Estandarización y Oportunidades de Mejora (CX)</h1>
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 18px; color: #e1e8f0; margin-top: 5px;">Optimización de la Experiencia del Cliente y Operación</p>
+            </div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 60px; top: 150px; width: 360px; height: 480px; background-color: #ffffff; border-radius: 8px; border-top: 6px solid #1565c0; z-index: 1;"></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 90px; top: 180px; width: 60px; height: 60px; background-color: #e3f2fd; border-radius: 50%; z-index: 2;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 90px; top: 190px; width: 60px; height: 40px; z-index: 10; text-align: center;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; color: #1565c0;">01</p></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 320px; top: 180px; width: 50px; height: 50px; z-index: 10; color: #1565c0; font-size: 36px;"><i class="fas fa-file-invoice"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 90px; top: 260px; width: 300px; height: 60px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; color: #0d47a1; line-height: 1.2;">Consolidación Documental</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 90px; top: 330px; width: 300px; height: 120px; z-index: 10;"><p style="font-family: 'Open Sans', sans-serif; font-size: 14px; color: #455a64; line-height: 1.6; margin-bottom: 15px;">Asegurar carga en <strong>tiempo real</strong> de hojas de servicio completas (firmas, sellos, fotos) a la nube.</p></div>
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 80px; top: 460px; width: 320px; height: 140px; background-color: #f1f8e9; border-radius: 6px; border-left: 4px solid #1565c0; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 100px; top: 480px; width: 24px; height: 24px; z-index: 10; color: #1565c0; font-size: 18px;"><i class="fas fa-exclamation-circle"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 130px; top: 480px; width: 250px; height: 110px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: #1565c0; margin-bottom: 8px;">Punto Crítico</p><p style="font-size: 13px; color: #37474f; line-height: 1.5;">Evitar frenos en la facturación del <strong>día 15</strong>, especialmente vital para cumplir con los requisitos de <strong>Walmart</strong>.</p></div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 460px; top: 150px; width: 360px; height: 480px; background-color: #ffffff; border-radius: 8px; border-top: 6px solid #00897b; z-index: 1;"></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 490px; top: 180px; width: 60px; height: 60px; background-color: #e0f2f1; border-radius: 50%; z-index: 2;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 490px; top: 190px; width: 60px; height: 40px; z-index: 10; text-align: center;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; color: #00897b;">02</p></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 720px; top: 180px; width: 50px; height: 50px; z-index: 10; color: #00897b; font-size: 36px;"><i class="fas fa-network-wired"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 490px; top: 260px; width: 300px; height: 60px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; color: #00695c; line-height: 1.2;">Manejo de Escalamientos</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 490px; top: 330px; width: 300px; height: 120px; z-index: 10;"><p style="font-family: 'Open Sans', sans-serif; font-size: 14px; color: #455a64; line-height: 1.6; margin-bottom: 15px;">Estandarizar el flujo de información desde la visita técnica hasta la gerencia.</p></div>
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 480px; top: 460px; width: 320px; height: 140px; background-color: #f1f8e9; border-radius: 6px; border-left: 4px solid #00897b; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 500px; top: 480px; width: 24px; height: 24px; z-index: 10; color: #00897b; font-size: 18px;"><i class="fas fa-check-circle"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 530px; top: 480px; width: 250px; height: 110px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: #00897b; margin-bottom: 8px;">Acción Preventiva</p><p style="font-size: 13px; color: #37474f; line-height: 1.5;">Convertir rápidamente los <strong>hallazgos</strong> en sitio en planes de acción preventivos antes de que se vuelvan quejas.</p></div>
+            
+            <div class="drop-3d" data-object="true" data-object-type="shape" style="position: absolute; left: 860px; top: 150px; width: 360px; height: 480px; background-color: #ffffff; border-radius: 8px; border-top: 6px solid #ef6c00; z-index: 1;"></div>
+            <div data-object="true" data-object-type="shape" style="position: absolute; left: 890px; top: 180px; width: 60px; height: 60px; background-color: #fff3e0; border-radius: 50%; z-index: 2;"></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 890px; top: 190px; width: 60px; height: 40px; z-index: 10; text-align: center;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; color: #ef6c00;">03</p></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 1120px; top: 180px; width: 50px; height: 50px; z-index: 10; color: #ef6c00; font-size: 36px;"><i class="fas fa-chart-line"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 890px; top: 260px; width: 300px; height: 60px; z-index: 10;"><p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; color: #e65100; line-height: 1.2;">Expansión de Servicios</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 890px; top: 330px; width: 300px; height: 120px; z-index: 10;">
+                <p style="font-family: 'Open Sans', sans-serif; font-size: 14px; color: #455a64; line-height: 1.6; margin-bottom: 10px;">Sistematizar modelo de <em>Upselling On-demand</em> para servicios eventuales.</p>
+                <p style="font-size: 13px; color: #5d4037; background-color: #fff3e0; padding: 5px; border-radius: 4px; display: inline-block;"><i class="fas fa-star" style="color: #ef6c00; margin-right: 5px;"></i> Caso: Las Ventanas ($300/depto)</p>
+            </div>
+            <div class="drop-3d-sm" data-object="true" data-object-type="shape" style="position: absolute; left: 880px; top: 460px; width: 320px; height: 140px; background-color: #f1f8e9; border-radius: 6px; border-left: 4px solid #ef6c00; z-index: 2;"></div>
+            <div data-object="true" data-object-type="icon" style="position: absolute; left: 900px; top: 480px; width: 24px; height: 24px; z-index: 10; color: #ef6c00; font-size: 18px;"><i class="fas fa-bullseye"></i></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 930px; top: 480px; width: 260px; height: 110px; z-index: 10;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: #ef6c00; margin-bottom: 8px;">Objetivos de Réplica</p>
+                <ul style="font-size: 13px; color: #3e2723; line-height: 1.6;"><li>Hig Park</li><li>IB Vertical</li><li>Torre C</li></ul>
+            </div>
+            
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 670px; width: 400px; height: 30px; z-index: 10;"><p style="font-size: 12px; color: #718096;">Confidencial - Uso Interno Solamente</p></div>
+            <div data-object="true" data-object-type="textbox" style="position: absolute; left: 1100px; top: 670px; width: 120px; height: 30px; z-index: 10; text-align: right;"><p style="font-size: 12px; color: #718096;">Pág. 5</p></div>
+        </div>
+    </section>
+
+    <script>
+        function resizeSlides() {
+            const containers = document.querySelectorAll('.slide-container');
+            const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720) * 0.96; // 96% para dejar más espacio al fondo
+            
+            containers.forEach(container => {
+                container.style.transform = `scale(${scale})`;
+            });
+        }
+
+        window.addEventListener('resize', resizeSlides);
+        resizeSlides();
+
+        document.addEventListener('keydown', (e) => {
+            const slides = document.querySelectorAll('.slide-wrapper');
+            let currentSlideIndex = 0;
+            let minDistance = Infinity;
+            
+            slides.forEach((slide, index) => {
+                const distance = Math.abs(slide.getBoundingClientRect().top);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    currentSlideIndex = index;
+                }
+            });
+
+            if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault();
+                if (currentSlideIndex < slides.length - 1) {
+                    slides[currentSlideIndex + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                if (currentSlideIndex > 0) {
+                    slides[currentSlideIndex - 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
