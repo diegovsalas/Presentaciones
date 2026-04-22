@@ -1389,32 +1389,29 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
 
 /* ============================================================
    ENTRANCE ANIMATIONS (live presentation)
-   Triggered via IntersectionObserver; disabled in print & for
-   prefers-reduced-motion users.
+   Fired via <deck-stage>'s slidechange event. Only the CHILDREN
+   of the active slide animate (the slide container itself is
+   controlled by deck-stage in its shadow DOM).
    ============================================================ */
 @media (prefers-reduced-motion: no-preference) {
-  .slide.is-animated {
+  .slide.is-animated > *:not(.brand-strip):not(.folio):not(.divider-line):not(.title-bar) {
     opacity: 0;
     transform: translateY(18px);
     transition:
       opacity 600ms cubic-bezier(0.22, 0.61, 0.36, 1),
       transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
-    will-change: opacity, transform;
   }
-  .slide.is-animated.is-visible {
+  .slide.is-animated.is-visible > *:not(.brand-strip):not(.folio):not(.divider-line):not(.title-bar) {
     opacity: 1;
     transform: translateY(0);
   }
-  /* Staggered content reveal inside each slide once it's visible */
-  .slide.is-animated.is-visible > *:not(.brand-strip):not(.folio) {
-    animation: qbrFadeUp 700ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
-  }
-  .slide.is-animated.is-visible > *:nth-child(2) { animation-delay: 120ms; }
-  .slide.is-animated.is-visible > *:nth-child(3) { animation-delay: 220ms; }
-  .slide.is-animated.is-visible > *:nth-child(4) { animation-delay: 320ms; }
-  .slide.is-animated.is-visible > *:nth-child(5) { animation-delay: 400ms; }
-  .slide.is-animated.is-visible > *:nth-child(6) { animation-delay: 480ms; }
-  /* Chart bars: grow from baseline */
+  /* Staggered reveal — children get progressive delays */
+  .slide.is-animated.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+  .slide.is-animated.is-visible > *:nth-child(3) { transition-delay: 180ms; }
+  .slide.is-animated.is-visible > *:nth-child(4) { transition-delay: 280ms; }
+  .slide.is-animated.is-visible > *:nth-child(5) { transition-delay: 380ms; }
+  .slide.is-animated.is-visible > *:nth-child(6) { transition-delay: 460ms; }
+  /* Chart bars: grow from baseline when Eficiencia slide is active */
   .s-eff.is-visible svg rect {
     animation: qbrBarGrow 900ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
     transform-origin: center bottom;
@@ -1423,26 +1420,22 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
   .s-eff.is-visible svg rect:nth-of-type(1) { animation-delay: 320ms; }
   .s-eff.is-visible svg rect:nth-of-type(2) { animation-delay: 440ms; }
   .s-eff.is-visible svg rect:nth-of-type(3) { animation-delay: 560ms; }
-  @keyframes qbrFadeUp {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
   @keyframes qbrBarGrow {
     from { transform: scaleY(0); opacity: 0.4; }
     to   { transform: scaleY(1); opacity: 0.9; }
   }
 }
-/* PDF / print: always show everything, no animation */
+/* PDF / print / pdf-mode: disable everything */
 @media print {
-  .slide.is-animated { opacity: 1 !important; transform: none !important; }
-  .slide.is-animated > * { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .slide.is-animated > * { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+  .s-eff svg rect { animation: none !important; transform: none !important; }
 }
-/* If JS is disabled or pdf mode, show everything */
-body.pdf-mode .slide.is-animated,
-body.pdf-mode .slide.is-animated > * {
+body.pdf-mode .slide.is-animated > *,
+body.pdf-mode .s-eff svg rect {
   opacity: 1 !important;
   transform: none !important;
   animation: none !important;
+  transition: none !important;
 }
 </style>
 
@@ -2100,7 +2093,7 @@ body.pdf-mode .slide.is-animated > * {
   </div>
   <div class="qa-head">
     <div class="k">Abrimos el espacio</div>
-    <h2>¿Dudas, <span class="em">comentarios,</span><br>discusión?</h2>
+    <h2>¿Dudas o <span class="em">comentarios?</span></h2>
   </div>
   <div class="qa-topics">
     <div class="topic">
@@ -2261,33 +2254,36 @@ try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch
 <script>
 (function () {
   var params = new URLSearchParams(window.location.search);
-  var pdfMode = params.get('pdf') === '1';
-  if (pdfMode) { document.body.classList.add('pdf-mode'); return; }
+  if (params.get('pdf') === '1') { document.body.classList.add('pdf-mode'); return; }
 
   var slides = document.querySelectorAll('.slide');
   slides.forEach(function (s) { s.classList.add('is-animated'); });
 
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced || !('IntersectionObserver' in window)) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     slides.forEach(function (s) { s.classList.add('is-visible'); });
     return;
   }
 
-  // Show first slide immediately (no wait for scroll)
-  if (slides[0]) slides[0].classList.add('is-visible');
+  function activate(slide) {
+    if (!slide) return;
+    slides.forEach(function (s) { s.classList.remove('is-visible'); });
+    // Force reflow so the transition replays when the same class is re-added
+    void slide.offsetWidth;
+    slide.classList.add('is-visible');
+  }
 
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('is-visible');
-        io.unobserve(e.target);
-      }
+  var deck = document.querySelector('deck-stage');
+  if (deck) {
+    deck.addEventListener('slidechange', function (e) {
+      activate(e.detail && e.detail.slide);
     });
-  }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
-
-  slides.forEach(function (s) {
-    if (!s.classList.contains('is-visible')) io.observe(s);
-  });
+    // Activate whatever is currently active (in case slidechange already fired)
+    var current = deck.querySelector('.slide[data-deck-active]') || slides[0];
+    activate(current);
+  } else {
+    // No deck-stage → static document view: reveal all
+    slides.forEach(function (s) { s.classList.add('is-visible'); });
+  }
 })();
 </script>
 
