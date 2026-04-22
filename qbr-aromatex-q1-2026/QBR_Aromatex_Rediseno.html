@@ -1018,6 +1018,21 @@ deck-stage { background: #000; }
 .s-ba .grid-full { grid-template-columns: 1fr; grid-template-rows: 1fr; }
 .s-ba .grid-3 { grid-template-columns: 1.4fr 1fr; grid-template-rows: 1fr 1fr; }
 .s-ba .grid-3 img:first-child { grid-row: 1 / span 2; }
+/* Hero: single centered photo, not stretched. Use for low-res sources. */
+.s-ba .grid-hero {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.s-ba .grid-hero img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 62%;
+  max-height: 58%;
+  object-fit: contain !important;
+  image-rendering: auto;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08);
+}
 .s-ba .label {
   position: absolute;
   top: 56px; left: 56px;
@@ -1878,7 +1893,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
 <section class="slide s-ba" data-label="Antes Despues A">
   <div class="half before">
     <div class="label">ANTES · Aroma Advance Pro</div>
-    <div class="photos grid-full">
+    <div class="photos grid-hero">
       <img src="project/assets/antes-333.jpg" alt="Aroma Advance Pro instalado en #333 IS Galerías Monterrey">
     </div>
     <div class="caption">
@@ -1888,7 +1903,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
   </div>
   <div class="half after">
     <div class="label after">DESPUÉS · Aroma One</div>
-    <div class="photos grid-full">
+    <div class="photos grid-hero">
       <img src="project/assets/despues-333.jpg" alt="Aroma One integrado sobre columna en #333 IS Galerías Monterrey">
     </div>
     <div class="caption">
