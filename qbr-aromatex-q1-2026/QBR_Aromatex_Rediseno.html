@@ -894,26 +894,43 @@ deck-stage { background: #000; }
   line-height: 1.35; letter-spacing: .01em;
   max-width: 140px;
 }
-.ap-fase1 { text-align: right; }
-.ap-fase1-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 9px 14px;
-  border: 1px solid var(--accent);
-  border-radius: 2px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px; letter-spacing: .22em;
-  color: var(--accent);
-  text-transform: uppercase;
-  font-weight: 500;
+.ap-milestones {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  min-width: 440px;
 }
-.ap-fase1-note {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
+.ap-ms {
+  padding: 14px 18px;
+  border-radius: 2px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.ap-ms.done {
+  background: rgba(212,225,87,.08);
+  border: 1px solid var(--accent);
+}
+.ap-ms.target {
+  background: rgba(244,239,227,.04);
+  border: 1px dashed var(--accent);
+}
+.ap-ms .ms-k {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase;
   color: var(--paper-on-dark-60);
-  margin-top: 10px;
-  line-height: 1.5;
-  max-width: 340px;
-  margin-left: auto;
+}
+.ap-ms.done .ms-k { color: var(--accent); }
+.ap-ms .ms-lg {
+  font-family: 'Fraunces', serif; font-weight: 400;
+  font-size: 28px; line-height: 1; letter-spacing: -0.02em;
+  color: var(--cream);
+  margin-top: 2px;
+}
+.ap-ms.done .ms-lg, .ap-ms.target .ms-lg { color: var(--accent); }
+.ap-ms.target .ms-lg .tgt { color: var(--cream); }
+.ap-ms .ms-nt {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; color: var(--paper-on-dark-60);
+  line-height: 1.4;
+  margin-top: 4px;
 }
 .ap-f2-label {
   font-family: 'JetBrains Mono', monospace;
@@ -1794,9 +1811,17 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
           <div class="ap-l">difusores<br>instalados</div>
         </div>
       </div>
-      <div class="ap-fase1">
-        <div class="ap-fase1-badge">✓ Fase 1 · 100%</div>
-        <div class="ap-fase1-note">14 sucursales · 103 difusores · Sucursales 4.0, Insignia, Aperturas</div>
+      <div class="ap-milestones">
+        <div class="ap-ms done">
+          <div class="ms-k">✓ Completada · Q1 2026</div>
+          <div class="ms-lg">Fase 1 · 100%</div>
+          <div class="ms-nt">14 sucursales · 103 difusores<br>Sucursales 4.0, Insignia, Aperturas</div>
+        </div>
+        <div class="ap-ms target">
+          <div class="ms-k">Cierre comprometido</div>
+          <div class="ms-lg">Fase 2 · <span class="tgt">100% Q3</span></div>
+          <div class="ms-nt">Guadalajara Q2 · Monterrey Q3 · CDMX Q3<br>135 sucursales · 450 difusores restantes</div>
+        </div>
       </div>
     </div>
 
@@ -1806,7 +1831,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
         <div class="ap-city strong">
           <div class="ap-city-head">
             <div class="ap-city-name">Monterrey</div>
-            <div class="ap-city-tag">En avance</div>
+            <div class="ap-city-tag">Cierre Q3</div>
           </div>
           <div class="ap-city-pct">64%</div>
           <div class="ap-city-stats">
@@ -1817,7 +1842,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
         <div class="ap-city strong">
           <div class="ap-city-head">
             <div class="ap-city-name">Guadalajara</div>
-            <div class="ap-city-tag">Recta final</div>
+            <div class="ap-city-tag">Cierre Q2</div>
           </div>
           <div class="ap-city-pct">81%</div>
           <div class="ap-city-stats">
@@ -1828,9 +1853,9 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
         <div class="ap-city upcoming">
           <div class="ap-city-head">
             <div class="ap-city-name">CDMX</div>
-            <div class="ap-city-tag">Próximo release · H2</div>
+            <div class="ap-city-tag">Arranque + cierre Q3</div>
           </div>
-          <div class="ap-city-pct">Q3–Q4</div>
+          <div class="ap-city-pct">Q3</div>
           <div class="ap-city-stats">
             <span>78 <em>sucursales</em></span>
             <span>268 <em>difusores</em></span>
