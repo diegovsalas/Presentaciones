@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>QBR Q1 2026 · Aromatex × Innovasport</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="deck-stage.js"></script>
+<style>
+/* ============================================================
+   QBR AROMATEX · REDISEÑO EDITORIAL
+   Design size: 1920 × 1080
+   System:
+     - Fondo oscuro (deep) y fondo crema (cream) alternan por slide
+     - Fraunces display, Inter body, JetBrains Mono datos
+     - Números hero enormes, composición tipo revista
+   ============================================================ */
+
+:root {
+  --deep: #0A2A24;           /* verde muy profundo, casi negro */
+  --deep-2: #143F36;         /* verde medio oscuro para acentos */
+  --cream: #F4EFE3;          /* crema cálido papel */
+  --cream-2: #EAE3D2;        /* crema un poco más denso */
+  --ink: #0D1F1B;            /* tinta casi negra verde */
+  --ink-60: rgba(13,31,27,.60);
+  --ink-40: rgba(13,31,27,.40);
+  --ink-15: rgba(13,31,27,.15);
+  --paper-on-dark: rgba(244,239,227,.85);
+  --paper-on-dark-60: rgba(244,239,227,.60);
+  --paper-on-dark-25: rgba(244,239,227,.22);
+  --accent: #D4E157;         /* citrus, solo para momentos hero */
+  --accent-2: #7FB069;       /* verde sauce claro */
+  --red: #B94A3B;            /* rojo terracota, no saturado */
+  --amber: #C2882A;          /* ámbar apagado */
+  --ok: #7FB069;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background: #000;
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11";
+}
+
+deck-stage { background: #000; }
+
+/* --- PRINT --- */
+@page { size: 1920px 1080px; margin: 0; }
+@media print {
+  html, body { background: #000 !important; }
+  .slide { page-break-after: always; break-after: page; }
+  .slide:last-of-type { page-break-after: auto; break-after: auto; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  /* Hide tweaks panel + any deck-stage chrome in print */
+  #tweaks-panel, .tweaks-panel, [data-deck-chrome] { display: none !important; }
+}
+
+/* --- SLIDE BASE --- */
+.slide {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+}
+.slide.dark { background: var(--deep); color: var(--cream); }
+
+/* Subtle noise texture on backgrounds */
+.slide::before {
+  content: '';
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04  0 0 0 0 0.04  0 0 0 0 0.04  0 0 0 0.35 0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.5'/></svg>");
+  opacity: .35;
+  mix-blend-mode: multiply;
+}
+.slide.dark::before { mix-blend-mode: screen; opacity: .15; }
+
+/* --- TYPE --- */
+.display {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  letter-spacing: -0.025em;
+  line-height: 0.95;
+}
+.display.italic { font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100; }
+.serif { font-family: 'Fraunces', Georgia, serif; }
+.mono  { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+.kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+}
+.kicker.muted { color: var(--ink-60); }
+.dark .kicker.muted { color: var(--paper-on-dark-60); }
+
+/* --- CHROME: page number, logo strip --- */
+.folio {
+  position: absolute;
+  bottom: 44px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--ink-40);
+}
+.dark .folio { color: var(--paper-on-dark-60); }
+.folio.l { left: 72px; }
+.folio.r { right: 72px; }
+
+.brand-strip {
+  position: absolute;
+  top: 44px; left: 72px; right: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--ink-60);
+  text-transform: uppercase;
+}
+.brand-strip .bl { display:flex; align-items:center; gap:16px; }
+.brand-strip .bl img { height: 16px; width:auto; display:block; opacity:.9; }
+.brand-strip .bl .bar { width:1px; height:14px; background:currentColor; opacity:.35; }
+.brand-strip .bl .sub { letter-spacing:.22em; font-weight:500; color: inherit; }
+.brand-strip .bl .sub .mk { color: var(--accent-2); margin-right:6px; }
+.slide.dark .brand-strip .bl .sub .mk { color: var(--accent); }
+.dark .brand-strip { color: var(--paper-on-dark-60); }
+.brand-strip .sep { opacity: .5; margin: 0 14px; }
+
+/* Real brand lockup: Avantex wordmark (PNG) + Aromatex sub-brand */
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.lockup .avx {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+.lockup .sep {
+  width: 1px;
+  height: 20px;
+  background: currentColor;
+  opacity: .35;
+}
+.lockup .sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: inherit;
+}
+.lockup .sub .slash { opacity: .4; margin: 0 6px; font-weight: 400; }
+
+/* Stacked lockup for cover/closing */
+.lockup-big {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+.lockup-big .avx { height: 56px; width: auto; display: block; }
+.lockup-big .sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: inherit;
+  padding-left: 3px;
+}
+.lockup-big .sub .plus { opacity: .4; margin-right: 10px; font-weight: 300; }
+.lockup-big .sub .mark { color: var(--accent); margin-right: 4px; }
+
+/* --- BUTTONS / PILLS --- */
+.pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 16px;
+  border: 1px solid var(--ink-15);
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+.dark .pill { border-color: var(--paper-on-dark-25); color: var(--paper-on-dark); }
+.pill .bullet {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 0 3px rgba(127,176,105,.2);
+}
+
+/* ---- SLIDE 1: PORTADA ---- */
+.s-cover {
+  padding: 72px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 60px;
+}
+.s-cover .header { grid-column: 1/-1; display: flex; justify-content: space-between; align-items: flex-start; }
+.s-cover .title { grid-column: 1; align-self: end; }
+.s-cover .title .kicker { margin-bottom: 36px; display: block; }
+.s-cover h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 240px;
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+.s-cover h1 .it { font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100; font-weight: 300; }
+.s-cover .hero-stats {
+  grid-column: 2;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  padding-bottom: 18px;
+}
+.s-cover .hero-kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.s-cover .hero-kpi .num {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 170px;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  display: flex;
+  align-items: baseline;
+}
+.s-cover .hero-kpi .num .pct { font-size: 72px; margin-left: 6px; opacity: .85; }
+.s-cover .hero-kpi .lab {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper-on-dark);
+  margin-top: 16px;
+  max-width: 340px;
+  line-height: 1.6;
+}
+.s-cover .meta-row {
+  grid-column: 1/-1;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--paper-on-dark-25);
+  padding-top: 32px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-on-dark);
+}
+.s-cover .meta-row .group { display: flex; gap: 40px; }
+.s-cover .meta-row .cell span { color: var(--paper-on-dark-60); margin-right: 10px; }
+
+/* ---- SLIDE 2: QUIÉNES SOMOS ---- */
+.s-who { padding: 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 60px; }
+.s-who h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 140px;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  max-width: 1500px;
+}
+.s-who h2 .em { font-style: italic; color: var(--accent-2); font-weight: 300; }
+.s-who .body {
+  display: grid; grid-template-columns: 1.3fr 1fr; gap: 100px; align-items: center;
+}
+.s-who .lead {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.3;
+  color: var(--ink);
+  max-width: 720px;
+}
+.s-who .stats-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 60px; }
+.s-who .stat .num {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 110px;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+.s-who .stat .num .tiny { font-size: 48px; color: var(--ink-40); }
+.s-who .stat .lab {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  margin-top: 10px;
+  border-top: 1px solid var(--ink-15);
+  padding-top: 12px;
+}
+
+/* ---- SLIDE 3: SECTION DIVIDER ---- */
+.s-divider {
+  padding: 72px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.s-divider .section-no {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--paper-on-dark-60);
+}
+.s-divider .section-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 320px;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: var(--cream);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  max-width: 1600px;
+}
+.s-divider .section-title .accent { color: var(--accent); font-style: normal; }
+.s-divider .section-sub {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 1.4;
+  color: var(--paper-on-dark);
+  max-width: 900px;
+}
+
+/* ---- SLIDE 4: RESUMEN OPERATIVO (KPI GRID) ---- */
+.s-kpi { padding: 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 48px; }
+.s-kpi .head { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; align-items: end; }
+.s-kpi h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 96px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  max-width: 1200px;
+}
+.s-kpi h2 .em { font-style: italic; }
+.s-kpi .head .intro {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--ink-60);
+  max-width: 420px;
+  padding-bottom: 14px;
+}
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--ink-15);
+  border-bottom: 1px solid var(--ink-15);
+}
+.kpi-cell {
+  padding: 44px 36px 36px;
+  border-right: 1px solid var(--ink-15);
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 360px;
+}
+.kpi-cell:last-child { border-right: none; }
+.kpi-cell .top { display: flex; justify-content: space-between; align-items: flex-start; }
+.kpi-cell .idx {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--ink-40);
+}
+.kpi-cell .name {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  text-align: right;
+  max-width: 240px;
+}
+.kpi-cell .num {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 160px;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+}
+.kpi-cell .num .tiny { font-size: 56px; color: var(--ink-60); margin-left: 4px; }
+.kpi-cell.hero .num { color: var(--deep); }
+.kpi-cell .sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+.kpi-row-2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  padding-top: 8px;
+}
+.mini-kpi .lab {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  margin-bottom: 10px;
+}
+.mini-kpi .val {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 72px;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.mini-kpi .val .u { font-size: 28px; color: var(--ink-40); margin-left: 4px; }
+.mini-kpi .note {
+  font-size: 13px;
+  color: var(--ink-60);
+  margin-top: 6px;
+}
+
+/* ---- SLIDE 5: EFICIENCIA MENSUAL (CHART) ---- */
+.s-eff { padding: 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 40px; }
+.s-eff .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 60px; }
+.s-eff h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 96px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  max-width: 1100px;
+}
+.s-eff h2 .em { font-style: italic; color: var(--deep); }
+.s-eff .intro {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--ink-60);
+  max-width: 460px;
+  padding-bottom: 16px;
+}
+.chart-area {
+  display: grid;
+  grid-template-columns: 3.5fr 1.6fr;
+  gap: 60px;
+  align-items: stretch;
+}
+.chart {
+  position: relative;
+  padding: 40px 30px 60px 80px;
+  border: 1px solid var(--ink-15);
+  background: rgba(255,255,255,.4);
+  border-radius: 2px;
+}
+.chart svg { width: 100%; height: 100%; display: block; }
+.chart .y-lab {
+  position: absolute;
+  left: 20px; top: 40px; bottom: 60px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-40);
+  letter-spacing: 0.1em;
+}
+.chart .x-lab {
+  position: absolute;
+  left: 80px; right: 30px; bottom: 22px;
+  display: flex; justify-content: space-around;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--ink-60);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.chart-side {
+  display: flex; flex-direction: column; gap: 20px;
+  justify-content: center;
+}
+.eff-card {
+  background: var(--deep);
+  color: var(--cream);
+  padding: 36px 32px;
+  border-radius: 2px;
+}
+.eff-card .k { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--paper-on-dark-60); }
+.eff-card .v { font-family:'Fraunces',serif; font-weight:300; font-size:90px; line-height:1; letter-spacing:-.03em; color: var(--accent); margin: 14px 0 8px; }
+.eff-card .v .tiny { font-size: 36px; }
+.eff-card .d { font-family:'Fraunces',serif; font-weight:300; font-size:18px; line-height:1.4; color: var(--paper-on-dark); font-style: italic; }
+
+/* ---- SLIDE 6: COMPARATIVA 2025 vs 2026 (HERO) ---- */
+.s-vs { padding: 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 40px; }
+.s-vs .head { display: flex; justify-content: space-between; align-items: flex-end; }
+.s-vs h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 96px;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  max-width: 1400px;
+}
+.s-vs h2 .em { font-style: italic; color: var(--accent); }
+.s-vs .vs-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 40px;
+  align-items: stretch;
+}
+.year-card {
+  padding: 44px 40px 40px;
+  border: 1px solid var(--paper-on-dark-25);
+  border-radius: 2px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.year-card.now { background: var(--accent); color: var(--deep); border-color: var(--accent); }
+.year-card .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--paper-on-dark-60);
+}
+.year-card.now .label { color: var(--deep); opacity: .6; }
+.year-card .big {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 260px;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  color: var(--cream);
+  margin-top: 12px;
+}
+.year-card.now .big { color: var(--deep); }
+.year-card .sub {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.35;
+  color: var(--paper-on-dark);
+  font-style: italic;
+  margin-top: 14px;
+}
+.year-card.now .sub { color: var(--deep); }
+
+.vs-table {
+  padding: 32px 36px 24px;
+  border: 1px solid var(--paper-on-dark-25);
+  border-radius: 2px;
+}
+.vs-table .tl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--paper-on-dark-60);
+  margin-bottom: 18px;
+}
+.vs-table table { width: 100%; border-collapse: collapse; }
+.vs-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--paper-on-dark-60);
+  font-weight: 500;
+  text-align: right;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--paper-on-dark-25);
+}
+.vs-table th:first-child { text-align: left; }
+.vs-table td {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(244,239,227,.08);
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--cream);
+  text-align: right;
+}
+.vs-table td:first-child { text-align: left; font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 400; }
+.vs-table .delta { color: var(--accent); font-variant-numeric: tabular-nums; font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; }
+.vs-table tr.total td { border-bottom: none; padding-top: 18px; font-weight: 600; }
+.vs-table tr.total td:first-child { font-weight: 600; }
+
+/* ---- SLIDE 7: INCIDENCIAS POR SUCURSAL ---- */
+.s-suc { padding: 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 40px; }
+.s-suc .head { display: flex; justify-content: space-between; align-items: flex-end; }
+.s-suc h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 84px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  max-width: 1400px;
+}
+.s-suc h2 .em { font-style: italic; }
+.suc-table { width: 100%; border-collapse: collapse; }
+.suc-table thead th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  font-weight: 500;
+  text-align: left;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--ink-15);
+}
+.suc-table thead th.n { text-align: center; width: 120px; }
+.suc-table tbody td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--ink-15);
+  font-family: 'Inter', sans-serif;
+  font-size: 19px;
+  color: var(--ink);
+  vertical-align: middle;
+}
+.suc-table tbody td.num {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 38px;
+  text-align: center;
+  color: var(--ink);
+}
+.suc-table tbody tr.hot td.num { color: var(--red); }
+.suc-table tbody td.branch strong { font-family: 'Fraunces', serif; font-weight: 500; font-size: 22px; display: block; }
+.suc-table tbody td.branch .meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-40); margin-top: 4px; }
+.suc-table tbody td.type { color: var(--ink-60); font-size: 17px; }
+.suc-table tbody td.action { color: var(--deep); font-weight: 500; font-size: 17px; }
+.suc-table tbody td.action::before {
+  content: '→ ';
+  color: var(--accent-2);
+  font-weight: 700;
+}
+
+/* ---- SLIDE 8: MOVIMIENTOS ---- */
+.s-mov { padding: 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 50px; }
+.s-mov h2 {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 96px; line-height: 0.95; letter-spacing: -0.03em;
+  max-width: 1400px;
+}
+.s-mov h2 .em { font-style: italic; }
+.mov-grid { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 36px; }
+.mov-col .mov-head {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
+}
+.mov-col .dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--ok);
+}
+.mov-col.open .dot { background: var(--ok); }
+.mov-col.close .dot { background: var(--red); }
+.mov-col.integ .dot { background: var(--accent); }
+.mov-col .mov-head .lab {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-60);
+}
+.mov-col .mov-head .n {
+  margin-left: auto;
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 48px; line-height: 1; color: var(--ink);
+}
+.mov-list {
+  display: flex; flex-direction: column; gap: 0;
+}
+.mov-item {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--ink-15);
+  display: flex; justify-content: space-between; align-items: baseline;
+}
+.mov-item:last-child { border-bottom: none; }
+.mov-item .code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--ink-40); letter-spacing: .1em;
+}
+.mov-item .name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 400; color: var(--ink); flex: 1; margin-left: 18px; }
+.integ-chips {
+  display: flex; flex-wrap: wrap; gap: 10px 8px;
+}
+.integ-chips .chip {
+  padding: 10px 16px 10px 14px;
+  border: 1px solid var(--ink-15);
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.integ-chips .chip .n {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent-2);
+  letter-spacing: .08em;
+}
+
+/* ---- SLIDE 9: PRÓXIMAS APERTURAS ---- */
+.s-next { padding: 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 28px; padding-bottom: 100px; }
+.s-next .head { display: flex; justify-content: space-between; align-items: flex-end; }
+.s-next h2 {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 96px; line-height: 0.95; letter-spacing: -0.03em;
+  max-width: 1200px;
+}
+.s-next h2 .em { font-style: italic; }
+.next-body { display: grid; grid-template-columns: 1.6fr 1fr; gap: 80px; }
+.next-list { border-top: 1px solid var(--ink-15); }
+.next-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 180px 100px;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--ink-15);
+  align-items: baseline;
+}
+.next-row .i { font-family:'JetBrains Mono',monospace; font-size: 13px; color: var(--ink-40); letter-spacing: .1em; }
+.next-row .b { font-family:'Fraunces',serif; font-weight: 500; font-size: 24px; color: var(--ink); }
+.next-row .banner { font-family:'JetBrains Mono',monospace; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-60); }
+.next-row .q { font-family:'Fraunces',serif; font-weight: 300; font-size: 44px; color: var(--ink); text-align: right; letter-spacing: -.02em; }
+.next-total {
+  margin-top: 18px;
+  padding: 20px 0 0;
+  border-top: 2px solid var(--ink);
+  display: flex; justify-content: space-between; align-items: baseline;
+}
+.next-total .lab { font-family:'JetBrains Mono',monospace; font-size: 16px; letter-spacing: .22em; text-transform: uppercase; }
+.next-total .v { font-family:'Fraunces',serif; font-weight: 300; font-size: 96px; line-height: .9; letter-spacing: -.04em; }
+.next-total .v .u { font-size: 28px; color: var(--ink-40); margin-left: 8px; }
+.s-next .next-row { padding: 16px 0; }
+.s-next .next-row .q { font-size: 36px; }
+.next-aside {
+  background: var(--deep);
+  color: var(--cream);
+  padding: 48px 40px;
+  border-radius: 2px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.next-aside .k { font-family:'JetBrains Mono',monospace; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--paper-on-dark-60); }
+.next-aside .h {
+  font-family:'Fraunces',serif; font-weight: 300; font-style: italic;
+  font-size: 56px; line-height: 1; letter-spacing: -.02em;
+  color: var(--accent); margin: 20px 0 28px;
+}
+.next-aside .p {
+  font-family:'Fraunces',serif; font-weight: 300;
+  font-size: 22px; line-height: 1.4;
+  color: var(--paper-on-dark);
+}
+
+/* ---- SLIDE 11: AROMA ONE FASES ---- */
+.s-aone { padding: 72px; display: grid; grid-template-rows: auto auto auto; gap: 36px; }
+.s-aone .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 60px; }
+.s-aone h2 {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 84px; line-height: 0.95; letter-spacing: -0.03em;
+  max-width: 1200px;
+}
+.s-aone h2 .em { font-style: italic; color: var(--accent); }
+
+.aone-compare {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 40px;
+  align-items: stretch;
+  padding: 28px 0;
+  border-top: 1px solid var(--paper-on-dark-25);
+  border-bottom: 1px solid var(--paper-on-dark-25);
+}
+.aone-unit {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.aone-unit .u-photo {
+  width: 180px; height: 180px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  grid-row: span 2;
+}
+.aone-unit .u-photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: saturate(0.9) contrast(1.05);
+}
+.aone-unit .u-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  border: 1px solid var(--paper-on-dark-25);
+  pointer-events: none;
+}
+.aone-unit.legacy .u-photo::before {
+  content: 'LEGADO';
+  position: absolute; top: 10px; left: 10px;
+  background: var(--red); color: var(--cream);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .2em; padding: 4px 8px;
+  z-index: 2;
+}
+.aone-unit.new .u-photo::before {
+  content: 'AROMA ONE';
+  position: absolute; top: 10px; left: 10px;
+  background: var(--accent); color: var(--deep);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .2em; padding: 4px 8px;
+  z-index: 2; font-weight: 600;
+}
+.aone-unit .u-label {
+  font-family: 'Fraunces', serif;
+  font-weight: 400; font-size: 26px;
+  line-height: 1.2;
+  color: var(--cream);
+  align-self: end;
+  padding-top: 8px;
+}
+.aone-unit .u-label .mark {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--paper-on-dark-60);
+  margin-top: 8px;
+  font-weight: 500;
+}
+.aone-unit.new .u-label .mark { color: var(--accent); }
+.aone-unit .u-spec {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--paper-on-dark-60);
+  line-height: 1.5;
+  align-self: start;
+  padding-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.aone-unit .u-spec .dot { display: none; }
+
+.aone-arrow {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 10px;
+  min-width: 80px;
+}
+.aone-arrow .ar-line {
+  width: 1px; height: 40px; background: var(--accent);
+}
+.aone-arrow .ar-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  writing-mode: horizontal-tb;
+}
+
+/* Phase progress */
+.phase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.phase .p-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 14px;
+}
+.phase .p-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--paper-on-dark);
+}
+.phase.done .p-tag { color: var(--accent); }
+.phase .p-pct {
+  font-family: 'Fraunces', serif;
+  font-weight: 300; font-size: 42px;
+  color: var(--cream); letter-spacing: -.02em;
+}
+.phase.done .p-pct { color: var(--accent); }
+.phase .p-bar {
+  width: 100%; height: 4px;
+  background: rgba(244,239,227,.14);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+.phase.done .p-fill {
+  height: 100%; background: var(--accent);
+}
+.phase.next .p-fill {
+  height: 100%; background: var(--paper-on-dark);
+  opacity: .5;
+}
+.phase .p-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  border-top: 1px solid var(--paper-on-dark-25);
+  padding-top: 18px;
+}
+.phase .p-stats > div { display: flex; flex-direction: column; }
+.phase .p-stats .pv {
+  font-family: 'Fraunces', serif;
+  font-weight: 300; font-size: 64px;
+  line-height: 1; letter-spacing: -.03em;
+  color: var(--cream);
+}
+.phase.done .p-stats .pv { color: var(--cream); }
+.phase .p-stats .pl {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--paper-on-dark-60);
+  margin-top: 8px;
+  line-height: 1.3;
+}
+.phase .p-stats .pu {
+  font-size: 22px;
+  color: var(--paper-on-dark-60);
+  margin-left: 4px;
+  letter-spacing: 0;
+}
+.phase .p-scope {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--paper-on-dark);
+  margin: -12px 0 18px;
+  letter-spacing: .01em;
+}
+.phase.done .p-scope { color: var(--accent); opacity: .9; }
+
+/* ---- SLIDE 11-12: ANTES / DESPUÉS ---- */
+.s-ba {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  position: relative;
+}
+.s-ba .half {
+  position: relative;
+  overflow: hidden;
+}
+.s-ba .half.before { background: #1a1a1a; }
+.s-ba .half.after  { background: var(--deep); }
+.s-ba .half .photos {
+  position: absolute; inset: 0;
+  display: grid;
+  gap: 2px;
+}
+.s-ba .half .photos img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: saturate(0.95);
+}
+.s-ba .grid-2x2 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.s-ba .grid-full { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+.s-ba .label {
+  position: absolute;
+  top: 56px; left: 56px;
+  padding: 12px 20px;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  z-index: 5;
+}
+.s-ba .label.after { background: var(--accent); }
+.s-ba .caption {
+  position: absolute;
+  bottom: 56px; left: 56px; right: 56px;
+  z-index: 5;
+  color: var(--cream);
+}
+.s-ba .caption .h {
+  font-family: 'Fraunces', serif;
+  font-weight: 300; font-style: italic;
+  font-size: 48px; line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+}
+.s-ba .caption .p {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px; line-height: 1.5;
+  color: var(--paper-on-dark);
+  margin-top: 14px;
+  max-width: 420px;
+}
+.s-ba .half.before .caption .h { color: var(--cream); }
+.s-ba .half::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,0) 45%);
+  pointer-events: none;
+}
+.s-ba .divider-line {
+  position: absolute; left: 50%; top: 0; bottom: 0;
+  width: 1px; background: var(--accent); z-index: 6;
+}
+.s-ba .title-bar {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 36px 56px;
+  border-radius: 2px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  min-width: 500px;
+  max-width: 640px;
+}
+.s-ba .title-bar .k {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--ink-40);
+}
+.s-ba .title-bar .t {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 52px; line-height: 1; letter-spacing: -0.02em;
+  margin-top: 10px; color: var(--ink);
+}
+.s-ba .title-bar .t .em { font-style: italic; }
+.s-ba .title-bar .s {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; color: var(--ink-60); margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* ---- SLIDE 13: CIERRE ---- */
+.s-end { padding: 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 60px; }
+.s-end .big {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-style: italic;
+  font-size: 260px;
+  line-height: 0.9; letter-spacing: -0.04em;
+  color: var(--cream);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.s-end .big .a { color: var(--accent); font-style: normal; }
+.s-end .mid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: end;
+}
+.s-end .mid .msg {
+  font-family:'Fraunces',serif; font-weight: 300;
+  font-size: 28px; line-height: 1.45;
+  color: var(--paper-on-dark); max-width: 560px;
+}
+.s-end .contact {
+  background: var(--cream);
+  color: var(--ink);
+  padding: 40px 40px;
+  border-radius: 2px;
+}
+.s-end .contact .k {
+  font-family:'JetBrains Mono',monospace; font-size: 12px;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-40);
+}
+.s-end .contact .n {
+  font-family:'Fraunces',serif; font-weight: 500;
+  font-size: 36px; margin: 8px 0 18px; letter-spacing: -.01em;
+}
+.s-end .contact .rows { display: flex; flex-direction: column; gap: 10px; }
+.s-end .contact .row {
+  display: grid; grid-template-columns: 80px 1fr; gap: 12px;
+  font-family:'Inter',sans-serif; font-size: 16px;
+}
+.s-end .contact .row .l { color: var(--ink-40); font-family:'JetBrains Mono',monospace; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; padding-top: 3px; }
+.s-end .contact .row .v { color: var(--ink); font-weight: 500; }
+.mid img, .mid video { object-fit: scale-down; }
+
+/* ======================== TWEAKS PANEL ======================== */
+#tweaks-panel {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  width: 320px;
+  background: rgba(10, 42, 36, 0.95);
+  backdrop-filter: blur(16px);
+  color: var(--cream);
+  border: 1px solid rgba(244,239,227,.15);
+  border-radius: 8px;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  z-index: 2147483100;
+  display: none;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+}
+#tweaks-panel.active { display: block; }
+#tweaks-panel h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+#tweaks-panel .group { margin-bottom: 16px; }
+#tweaks-panel label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--paper-on-dark-60);
+  margin-bottom: 8px;
+}
+#tweaks-panel .seg {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+  background: rgba(244,239,227,.08);
+  padding: 3px;
+  border-radius: 4px;
+}
+#tweaks-panel .seg button {
+  padding: 8px 6px;
+  background: transparent;
+  border: none;
+  color: var(--paper-on-dark);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all .15s;
+}
+#tweaks-panel .seg button.on {
+  background: var(--accent);
+  color: var(--deep);
+  font-weight: 600;
+}
+#tweaks-panel .seg.two { grid-template-columns: 1fr 1fr; }
+
+/* Palette variants via attribute on <deck-stage> */
+deck-stage[data-palette="cream"] .slide { background: var(--cream); color: var(--ink); }
+deck-stage[data-palette="cream"] .slide.dark { background: var(--cream-2); color: var(--ink); }
+deck-stage[data-palette="cream"] .slide.dark .kicker.muted,
+deck-stage[data-palette="cream"] .slide.dark .folio { color: var(--ink-60); }
+deck-stage[data-palette="cream"] .slide.dark .wordmark,
+deck-stage[data-palette="cream"] .slide.dark .brand-strip { color: var(--ink-60); }
+
+deck-stage[data-palette="deep"] .slide:not(.dark) { background: var(--deep); color: var(--cream); }
+deck-stage[data-palette="deep"] .slide:not(.dark) .kicker.muted,
+deck-stage[data-palette="deep"] .slide:not(.dark) .folio { color: var(--paper-on-dark-60); }
+deck-stage[data-palette="deep"] .slide:not(.dark) h2 { color: var(--cream); }
+deck-stage[data-palette="deep"] .slide:not(.dark) .lead,
+deck-stage[data-palette="deep"] .slide:not(.dark) .mini-kpi .val,
+deck-stage[data-palette="deep"] .slide:not(.dark) .stat .num,
+deck-stage[data-palette="deep"] .slide:not(.dark) .kpi-cell .num,
+deck-stage[data-palette="deep"] .slide:not(.dark) .kpi-cell .name { color: var(--cream); }
+
+/* Density variants */
+deck-stage[data-density="compact"] .s-kpi .kpi-cell { min-height: 300px; padding: 32px 28px 28px; }
+deck-stage[data-density="compact"] .s-kpi .kpi-cell .num { font-size: 130px; }
+deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
+</style>
+
+<!-- Speaker notes (opcional, una línea por slide) -->
+</head>
+
+<body>
+
+<deck-stage width="1920" height="1080" data-palette="default" data-density="default">
+
+<!-- ============================================================
+     SLIDE 1 — PORTADA
+     ============================================================ -->
+<section class="slide dark s-cover" data-label="Portada">
+  <div class="header">
+    <div class="lockup-big">
+      <img class="avx" src="assets/avantex-white.png" alt="Grupo Avantex">
+      <div class="sub"><span class="mark">◆</span>Unidad <span class="plus">/</span>Aromatex</div>
+    </div>
+    <div class="kicker muted">Q1 · 2026 · Confidencial</div>
+  </div>
+
+  <div class="title">
+    <span class="kicker muted">Quarterly Business Review · Enero — Marzo 2026</span>
+    <h1>Business<br><span class="it">Review.</span></h1>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-kpi">
+      <div class="num">99.46<span class="pct">%</span></div>
+      <div class="lab">Eficiencia operativa<br>promedio Q1 · 931 difusores activos</div>
+    </div>
+  </div>
+
+  <div class="meta-row">
+    <div class="group">
+      <div class="cell"><span>Cliente</span>Innovasport</div>
+      <div class="cell"><span>Unidad</span>Aromatex</div>
+      <div class="cell"><span>KAM</span>Francisco Rodríguez</div>
+    </div>
+    <div class="cell"><span>Vol.</span>01 / 01</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 2 — QUIÉNES SOMOS
+     ============================================================ -->
+<section class="slide s-who" data-label="Quienes somos">
+  <div class="brand-strip">
+    <div class="bl"><img src="assets/avantex-dark.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex</span></div>
+    <div>§ 01 — Contexto</div>
+  </div>
+  <div class="body">
+    <div>
+      <span class="kicker muted" style="display:block;margin-bottom:24px;">Sobre nosotros</span>
+      <h2>Tu socio<br>en <span class="em">gestión de<br>espacios</span>.</h2>
+      <p class="lead" style="margin-top:40px;">Optimizamos instalaciones comerciales a nivel nacional con soluciones integrales de aroma, control de plagas y limpieza — respaldadas por tecnología propia y operación en 31 estados.</p>
+    </div>
+    <div class="stats-col">
+      <div class="stat">
+        <div class="num">+10<span class="tiny">y</span></div>
+        <div class="lab">Años de experiencia</div>
+      </div>
+      <div class="stat">
+        <div class="num">31</div>
+        <div class="lab">Estados de cobertura</div>
+      </div>
+      <div class="stat">
+        <div class="num">+600</div>
+        <div class="lab">Colaboradores</div>
+      </div>
+      <div class="stat">
+        <div class="num">+3.5<span class="tiny">k</span></div>
+        <div class="lab">Establecimientos aromatizados</div>
+      </div>
+    </div>
+  </div>
+  <div class="folio l">01 · QBR Q1 2026</div>
+  <div class="folio r">02 / 15</div>
+</section>
+
+<!-- ============================================================
+     SLIDE 3 — DIVIDER SECCIÓN I
+     ============================================================ -->
+<section class="slide dark s-divider" data-label="Seccion Desempeno">
+  <div>
+    <div class="section-no">§ 02 · Sección I</div>
+  </div>
+  <div>
+    <div class="section-title">Lo que<br>pasó en <span class="accent">Q1.</span></div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:end;">
+    <p class="section-sub">765 servicios programados y ejecutados. 15 incidencias reportadas — todas resueltas. Un trimestre con mejora sostenida mes a mes.</p>
+    <div class="folio r" style="position:static;">03 / 15</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 4 — RESUMEN OPERATIVO
+     ============================================================ -->
+<section class="slide s-kpi" data-label="Resumen operativo">
+  <div class="brand-strip">
+    <div class="bl"><img src="assets/avantex-dark.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex · Sección I</span></div>
+    <div>§ 03 — Indicadores clave</div>
+  </div>
+  <div class="head">
+    <h2>Un trimestre<br>con <span class="em">cumplimiento total.</span></h2>
+    <p class="intro">765 servicios programados, 765 ejecutados. 100% de atención sobre una base instalada de 931 difusores al cierre de marzo.</p>
+  </div>
+  <div>
+    <div class="kpi-grid">
+      <div class="kpi-cell">
+        <div class="top"><span class="idx">01</span><span class="name">Servicios<br>programados</span></div>
+        <div class="num">765</div>
+        <div class="sub">Enero — Marzo 2026</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="top"><span class="idx">02</span><span class="name">Servicios<br>ejecutados</span></div>
+        <div class="num">765</div>
+        <div class="sub">100% atendidos · 0 rezago</div>
+      </div>
+      <div class="kpi-cell hero">
+        <div class="top"><span class="idx">03</span><span class="name" style="color:var(--deep);">Cumplimiento<br>trimestral</span></div>
+        <div class="num">100<span class="tiny">%</span></div>
+        <div class="sub" style="color:var(--deep);">Agenda · Ejecución · Resolución</div>
+      </div>
+    </div>
+    <div class="kpi-row-2" style="margin-top: 40px;">
+      <div class="mini-kpi">
+        <div class="lab">Incidencias reportadas</div>
+        <div class="val">15<span class="u">/ 100% resueltas</span></div>
+        <div class="note">8 enero · 6 febrero · 1 marzo</div>
+      </div>
+      <div class="mini-kpi">
+        <div class="lab">Base instalada · Marzo</div>
+        <div class="val">931<span class="u">difusores</span></div>
+        <div class="note">En operación en 7 estados</div>
+      </div>
+      <div class="mini-kpi">
+        <div class="lab">Tiempo promedio de resolución</div>
+        <div class="val">3<span class="u">días</span></div>
+        <div class="note">Desde reporte hasta cierre</div>
+      </div>
+    </div>
+  </div>
+  <div class="folio l">02 · Sección I · Resumen</div>
+  <div class="folio r">04 / 15</div>
+</section>
+
+<!-- ============================================================
+     SLIDE 5 — EFICIENCIA MENSUAL + CHART
+     ============================================================ -->
+<section class="slide s-eff" data-label="Eficiencia mensual">
+  <div class="brand-strip">
+    <div class="bl"><img src="assets/avantex-dark.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex · Sección I</span></div>
+    <div>§ 04 — Eficiencia mensual</div>
+  </div>
+  <div class="head">
+    <h2>La tendencia<br><span class="em">a la alza.</span></h2>
+    <p class="intro">De 8 incidencias en enero a una sola en marzo. Cerramos el trimestre con 99.89% de eficiencia, 75 puntos base por encima del promedio trimestral.</p>
+  </div>
+  <div class="chart-area">
+    <div class="chart">
+      <div class="y-lab">
+        <span>10</span><span>8</span><span>6</span><span>4</span><span>2</span><span>0</span>
+      </div>
+      <svg viewBox="0 0 900 500" preserveAspectRatio="none" style="height:100%;">
+        <!-- Grid lines -->
+        <g stroke="rgba(13,31,27,.08)" stroke-width="1">
+          <line x1="0" y1="0" x2="900" y2="0"/>
+          <line x1="0" y1="100" x2="900" y2="100"/>
+          <line x1="0" y1="200" x2="900" y2="200"/>
+          <line x1="0" y1="300" x2="900" y2="300"/>
+          <line x1="0" y1="400" x2="900" y2="400"/>
+          <line x1="0" y1="500" x2="900" y2="500"/>
+        </g>
+        <!-- Bars: incidencias (max 10) -->
+        <!-- Enero 8, Febrero 6, Marzo 1 → heights 400, 300, 50 out of 500 -->
+        <g>
+          <rect x="90"  y="100" width="180" height="400" fill="#0A2A24" opacity=".9"/>
+          <rect x="360" y="200" width="180" height="300" fill="#143F36" opacity=".9"/>
+          <rect x="630" y="450" width="180" height="50"  fill="#D4E157" opacity="1"/>
+        </g>
+        <!-- Value labels above bars -->
+        <g font-family="Fraunces, serif" font-size="56" font-weight="300" fill="#0D1F1B" text-anchor="middle">
+          <text x="180" y="80">8</text>
+          <text x="450" y="180">6</text>
+          <text x="720" y="430">1</text>
+        </g>
+        <!-- Efficiency pills above values -->
+        <g font-family="JetBrains Mono, monospace" font-size="14" fill="#0D1F1B" opacity=".6" text-anchor="middle" letter-spacing="2">
+          <text x="180" y="40">99.14%</text>
+          <text x="450" y="40">99.35%</text>
+          <text x="720" y="40">99.89%</text>
+        </g>
+      </svg>
+      <div class="x-lab">
+        <span>Enero</span><span>Febrero</span><span>Marzo</span>
+      </div>
+    </div>
+    <div class="chart-side">
+      <div class="eff-card">
+        <div class="k">Promedio Q1</div>
+        <div class="v">99.46<span class="tiny">%</span></div>
+        <div class="d">15 incidencias sobre una base instalada promedio de 929 equipos.</div>
+      </div>
+      <div class="eff-card" style="background:var(--cream);color:var(--ink);">
+        <div class="k" style="color:var(--ink-40);">Reducción mes a mes</div>
+        <div class="v" style="color:var(--deep);">−87<span class="tiny">%</span></div>
+        <div class="d" style="color:var(--ink-60);">De 8 incidencias en enero a sólo 1 en marzo — mejora sostenida.</div>
+      </div>
+    </div>
+  </div>
+  <div class="folio l">02 · Sección I · Eficiencia</div>
+  <div class="folio r">05 / 15</div>
+</section>
+
+<!-- ============================================================
+     SLIDE 6 — COMPARATIVA Q1 2025 vs Q1 2026 (HERO)
+     ============================================================ -->
+<section class="slide dark s-vs" data-label="2025 vs 2026">
+  <div class="brand-strip" style="color:var(--paper-on-dark-60);">
+    <div class="bl"><img src="assets/avantex-white.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex · Sección I</span></div>
+    <div>§ 05 — Q1 2025 vs Q1 2026</div>
+  </div>
+  <div class="head">
+    <h2 style="color:var(--cream);">El mismo trimestre,<br><span class="em">un 65% menos<br>de fricción.</span></h2>
+    <div style="text-align:right;padding-bottom:20px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-on-dark-60);">Incidencias totales</div>
+      <div style="font-family:'Fraunces',serif;font-weight:300;font-size:110px;color:var(--accent);line-height:1;letter-spacing:-.04em;margin-top:8px;">−28</div>
+      <div style="font-family:'Fraunces',serif;font-style:italic;font-size:22px;color:var(--paper-on-dark);margin-top:6px;">reportes menos que en 2025</div>
+    </div>
+  </div>
+  <div class="vs-body">
+    <div class="year-card">
+      <div>
+        <div class="label">Q1 — 2025</div>
+      </div>
+      <div>
+        <div class="big">43</div>
+        <div class="sub">Incidencias reportadas<br>sobre el portafolio Innovasport</div>
+      </div>
+    </div>
+    <div class="year-card now">
+      <div>
+        <div class="label">Q1 — 2026</div>
+      </div>
+      <div>
+        <div class="big">15</div>
+        <div class="sub">Incidencias reportadas<br><strong>−65%</strong> vs el mismo periodo</div>
+      </div>
+    </div>
+    <div class="vs-table">
+      <div class="tl">Desglose por tipo</div>
+      <table>
+        <thead>
+          <tr><th>Categoría</th><th>2025</th><th>2026</th><th style="color:var(--accent);">Δ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Derrame de aroma</td><td>16</td><td>6</td><td class="delta">−62%</td></tr>
+          <tr><td>No huele / Encendido</td><td>11</td><td>4</td><td class="delta">−64%</td></tr>
+          <tr><td>Fallas en equipo</td><td>9</td><td>3</td><td class="delta">−67%</td></tr>
+          <tr><td>Equipo apagado</td><td>5</td><td>1</td><td class="delta">−80%</td></tr>
+          <tr><td>Equipo dañado</td><td>2</td><td>1</td><td class="delta">−50%</td></tr>
+          <tr class="total"><td>Total</td><td>43</td><td>15</td><td class="delta">−65%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="folio l" style="color:var(--paper-on-dark-60);">02 · Sección I · Año contra año</div>
+  <div class="folio r" style="color:var(--paper-on-dark-60);">06 / 15</div>
+</section>
+
+<!-- ============================================================
+     SLIDE 7 — INCIDENCIAS POR SUCURSAL
+     ============================================================ -->
+<section class="slide s-suc" data-label="Incidencias por sucursal">
+  <div class="brand-strip">
+    <div class="bl"><img src="assets/avantex-dark.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex · Sección I</span></div>
+    <div>§ 06 — Detalle por sucursal</div>
+  </div>
+  <div class="head">
+    <h2>Siete sucursales,<br>quince reportes,<br><span class="em">cero pendientes.</span></h2>
+    <div style="text-align:right;padding-bottom:16px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-40);">Solo una sucursal con recurrencia</div>
+      <div style="font-family:'Fraunces',serif;font-weight:300;font-size:48px;color:var(--ink);line-height:1;margin-top:8px;">#124 OT Sendero Los Cabos</div>
+      <div style="font-family:'Inter',sans-serif;font-size:14px;color:var(--ink-60);margin-top:6px;">Resuelta con cambio a equipo Pro</div>
+    </div>
+  </div>
+  <table class="suc-table">
+    <thead>
+      <tr>
+        <th style="width:380px;">Sucursal</th>
+        <th class="n">Reportes</th>
+        <th>Tipo de incidencia</th>
+        <th style="width:360px;">Acción correctiva</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hot">
+        <td class="branch"><strong>OT Sendero Los Cabos</strong><span class="meta">Sucursal #124 · Outlet</span></td>
+        <td class="num">3</td>
+        <td class="type">Derrame · Equipo dañado</td>
+        <td class="action">Cambio a equipo Pro</td>
+      </tr>
+      <tr>
+        <td class="branch"><strong>IS Parque Toreo Plus</strong><span class="meta">Sucursal #174 · Innova Sport</span></td>
+        <td class="num">1</td>
+        <td class="type">Derrame de aroma</td>
+        <td class="action">Cambio de empaques</td>
+      </tr>
+      <tr>
+        <td class="branch"><strong>IV San Pedro</strong><span class="meta">Sucursal #248 · Innvictus</span></td>
+        <td class="num">1</td>
+        <td class="type">No huele / Encendido</td>
+        <td class="action">Migración a Aroma One</td>
+      </tr>
+      <tr>
+        <td class="branch"><strong>IV Toreo</strong><span class="meta">Sucursal #218 · Innvictus</span></td>
+        <td class="num">1</td>
+        <td class="type">Derrame de aroma</td>
+        <td class="action">Reacomodo de equipo</td>
+      </tr>
+      <tr>
+        <td class="branch"><strong>IV Galerías Laguna</strong><span class="meta">Sucursal #313 · Innvictus</span></td>
+        <td class="num">1</td>
+        <td class="type">No huele / Encendido</td>
+        <td class="action">Ventilador resuelto</td>
+      </tr>
+      <tr>
+        <td class="branch"><strong>IV Altabrisa Mérida</strong><span class="meta">Sucursal #315 · Innvictus</span></td>
+        <td class="num">1</td>
+        <td class="type">No huele / Encendido</td>
+        <td class="action">Ventilador resuelto</td>
+      </tr>
+      <tr>
+        <td class="branch"><strong>OT Macro Plaza</strong><span class="meta">Sucursal #104 · Outlet</span></td>
+        <td class="num">1</td>
+        <td class="type">Fallas · Apagado</td>
+        <td class="action">Cambio de tapa y válvula</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="folio l">02 · Sección I · Sucursales</div>
+  <div class="folio r">07 / 15</div>
+</section>
+
+<!-- ============================================================
+     SLIDE 8 — DIVIDER SECCIÓN II
+     ============================================================ -->
+<section class="slide dark s-divider" data-label="Seccion Evolucion">
+  <div>
+    <div class="section-no">§ 07 · Sección II</div>
+  </div>
+  <div>
+    <div class="section-title">Hacia<br>dónde <span class="accent">vamos.</span></div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:end;">
+    <p class="section-sub">Balance neto +9 sucursales, 49 migradas a Aroma One y 68 equipos más por desplegar en Q2. El portafolio Innovasport sigue creciendo — y modernizándose.</p>
+    <div class="folio r" style="position:static;">08 / 15</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 9 — MOVIMIENTOS DEL TRIMESTRE
+     ============================================================ -->
+<section class="slide s-mov" data-label="Movimientos Q1">
+  <div class="brand-strip">
+    <div class="bl"><img src="assets/avantex-dark.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex · Sección II</span></div>
+    <div>§ 08 — Movimientos Q1</div>
+  </div>
+  <h2>Aperturas, integración<br>y cierre — <span class="em">balance neto +9</span>.</h2>
+  <div class="mov-grid">
+    <div class="mov-col open">
+      <div class="mov-head">
+        <span class="dot"></span>
+        <span class="lab">Aperturas</span>
+        <span class="n">2</span>
+      </div>
+      <div class="mov-list">
+        <div class="mov-item">
+          <span class="code">#419</span>
+          <span class="name">Rayados</span>
+        </div>
+        <div class="mov-item">
+          <span class="code">#392</span>
+          <span class="name">La Ceiba</span>
+        </div>
+      </div>
+    </div>
+    <div class="mov-col close">
+      <div class="mov-head">
+        <span class="dot"></span>
+        <span class="lab">Cierre</span>
+        <span class="n">1</span>
+      </div>
+      <div class="mov-list">
+        <div class="mov-item">
+          <span class="code">#383</span>
+          <span class="name">San Isidro</span>
+        </div>
+      </div>
+    </div>
+    <div class="mov-col integ">
+      <div class="mov-head">
+        <span class="dot"></span>
+        <span class="lab">Integración Aroma One</span>
+        <span class="n">8</span>
+      </div>
+      <div class="integ-chips" style="margin-top:6px;">
+        <span class="chip"><span class="n">#290</span>IV La Perla</span>
+        <span class="chip"><span class="n">#46</span>IS San Pedro Plus</span>
+        <span class="chip"><span class="n">#314</span>IV Plaza Cibeles</span>
+        <span class="chip"><span class="n">#329</span>IV Tehuacán</span>
+        <span class="chip"><span class="n">#313</span>IV Galerías Laguna</span>
+        <span class="chip"><span class="n">#315</span>IV Altabrisa</span>
+        <span class="chip"><span class="n">#312</span>IV Altaria</span>
+        <span class="chip"><span class="n">#167</span>IS Polanco</span>
+      </div>
+    </div>
+  </div>
+  <div class="folio l">03 · Sección II · Movimientos</div>
+  <div class="folio r">09 / 15</div>
+</section>
+
+<!-- ============================================================
+     SLIDE 10 — PRÓXIMAS APERTURAS
+     ============================================================ -->
+<section class="slide s-next" data-label="Proximas aperturas">
+  <div class="brand-strip">
+    <div class="bl"><img src="assets/avantex-dark.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex · Sección II</span></div>
+    <div>§ 09 — Próximas aperturas Q2</div>
+  </div>
+  <div class="head">
+    <h2 style="font-size:72px;"><span class="em">68 equipos</span><br>por desplegar en Q2.</h2>
+    <div style="text-align:right;padding-bottom:12px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-40);">7 aperturas · 4 banners · Q2 2026</div>
+  </div>
+  <div class="next-body">
+    <div>
+      <div class="next-list">
+        <div class="next-row"><span class="i">→01</span><span class="b">IS San Agustín 4.0</span><span class="banner">Innova Sport</span><span class="q">19</span></div>
+        <div class="next-row"><span class="i">→02</span><span class="b">IS Sikara 4.0</span><span class="banner">Innova Sport</span><span class="q">19</span></div>
+        <div class="next-row"><span class="i">→03</span><span class="b">IS Madero 4.0</span><span class="banner">Innova Sport</span><span class="q">10</span></div>
+        <div class="next-row"><span class="i">→04</span><span class="b">IS Antara Polanco 4.0</span><span class="banner">Innova Sport</span><span class="q">10</span></div>
+        <div class="next-row"><span class="i">→05</span><span class="b">Ameshop</span><span class="banner">Ameshop</span><span class="q">4</span></div>
+        <div class="next-row"><span class="i">→06</span><span class="b">NBA Santa Fe</span><span class="banner">NBA</span><span class="q">3</span></div>
+        <div class="next-row"><span class="i">→07</span><span class="b">IV Martín Carrera 2.0</span><span class="banner">Innvictus</span><span class="q">3</span></div>
+      </div>
+      <div class="next-total">
+        <div>
+          <div class="lab">Total equipos</div>
+          <div style="font-family:'Inter';font-size:14px;color:var(--ink-60);margin-top:6px;">7 sucursales · 4 banners</div>
+        </div>
+        <div class="v">68<span class="u">equipos</span></div>
+      </div>
+    </div>
+    <div class="next-aside">
+      <div>
+        <div class="k">Nota estratégica</div>
+        <div class="h">"El 71% del sembrado propuesto ya trae Aroma One de serie."</div>
+      </div>
+      <p class="p">Las siete aperturas nuevas de Q2 se entregarán con la plataforma Aroma One. Reducimos visibilidad del equipo, incidencias proyectadas y tiempo de instalación.</p>
+    </div>
+  </div>
+  <div class="folio l">03 · Sección II · Próximas aperturas</div>
+  <div class="folio r">10 / 15</div>
+</section>
+
+<!-- ============================================================
+     SLIDE 11 — AROMA ONE: FASES DE MIGRACIÓN
+     ============================================================ -->
+<section class="slide dark s-aone" data-label="Aroma One avance">
+  <div class="brand-strip" style="color:var(--paper-on-dark-60);">
+    <div class="bl"><img src="assets/avantex-white.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex · Sección II</span></div>
+    <div>§ 10 — Migración Aroma One</div>
+  </div>
+  <div class="head">
+    <h2 style="color:var(--cream);font-size:72px;">Migrando a <span class="em">Aroma One</span>.</h2>
+    <div style="text-align:right;padding-bottom:12px;max-width:560px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-on-dark-60);">El plan</div>
+      <div style="font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:22px;color:var(--paper-on-dark);margin-top:10px;line-height:1.35;">Reemplazar gradualmente los difusores legado por el nuevo Aroma One — más compacto, sin pantalla frontal, visualmente discreto.</div>
+    </div>
+  </div>
+
+  <!-- Comparison row: legacy vs Aroma One -->
+  <div class="aone-compare">
+    <div class="aone-unit legacy">
+      <div class="u-label">Equipo Advance <span class="mark">— con franja negra central</span></div>
+      <div class="u-photo"><img src="assets/d6.jpg" alt="Difusor legado con línea negra"></div>
+      <div class="u-spec">
+        <span>Volumen alto</span>
+        <span class="dot">·</span>
+        <span>Pantalla frontal visible</span>
+        <span class="dot">·</span>
+        <span>Franja negra central</span>
+      </div>
+    </div>
+    <div class="aone-arrow">
+      <div class="ar-line"></div>
+      <div class="ar-text">Migración</div>
+      <div class="ar-line"></div>
+    </div>
+    <div class="aone-unit new">
+      <div class="u-label"><span class="mark">Aroma One</span> — sin línea, sin pantalla</div>
+      <div class="u-photo"><img src="assets/a4.jpg" alt="Difusor Aroma One compacto sin línea"></div>
+      <div class="u-spec">
+        <span>30mm más bajo</span>
+        <span class="dot">·</span>
+        <span>25mm más corto</span>
+        <span class="dot">·</span>
+        <span>Sin pantalla frontal</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase progress -->
+  <div class="phase-grid">
+    <div class="phase done">
+      <div class="p-head">
+        <span class="p-tag">✓ Fase 1 — completada</span>
+        <span class="p-pct">100%</span>
+      </div>
+      <div class="p-bar"><div class="p-fill" style="width:100%;"></div></div>
+      <div class="p-scope">Sucursales 4.0 · Sucursales Insignia · Aperturas</div>
+      <div class="p-stats">
+        <div><span class="pv">49</span><span class="pl">sucursales migradas</span></div>
+        <div><span class="pv">227</span><span class="pl">equipos instalados</span></div>
+        <div><span class="pv">100%</span><span class="pl">del alcance Fase 1</span></div>
+      </div>
+    </div>
+    <div class="phase next">
+      <div class="p-head">
+        <span class="p-tag">Fase 2 — en curso Q2–Q4</span>
+        <span class="p-pct">59%</span>
+      </div>
+      <div class="p-bar light"><div class="p-fill next-fill" style="width:59%;"></div></div>
+      <div class="p-scope">Resto del portafolio Innovasport</div>
+      <div class="p-stats">
+        <div><span class="pv">101<span class="pu">/ 150</span></span><span class="pl">sucursales por migrar</span></div>
+        <div><span class="pv">326<span class="pu">/ 553</span></span><span class="pl">equipos pendientes</span></div>
+        <div><span class="pv">7</span><span class="pl">aperturas Q2 con Aroma One</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio l" style="color:var(--paper-on-dark-60);">03 · Sección II · Aroma One</div>
+  <div class="folio r" style="color:var(--paper-on-dark-60);">11 / 15</div>
+</section>
+
+<!-- ============================================================
+     SLIDE 12 — ANTES / DESPUÉS #1 (fotos reales)
+     ============================================================ -->
+<section class="slide s-ba" data-label="Antes Despues A">
+  <div class="half before">
+    <div class="label">ANTES · Equipos legado</div>
+    <div class="photos grid-2x2">
+      <img src="assets/d6.jpg" alt="Equipo legado blanco, voluminoso, cinta visible">
+      <img src="assets/a5.jpg" alt="Equipo legado sobre columna, con cables">
+      <img src="assets/a6.jpg" alt="Equipo legado sobre muro con franjas">
+      <img src="assets/a4.jpg" alt="Equipo legado rectangular en pared blanca">
+    </div>
+    <div class="caption">
+      <div class="h">"Aparatos industriales<br>pegados a la pared."</div>
+      <div class="p">Cajas voluminosas, cables visibles, cinta adhesiva — competían con la arquitectura de las tiendas.</div>
+    </div>
+  </div>
+  <div class="half after">
+    <div class="label after">DESPUÉS · Aroma One</div>
+    <div class="photos grid-2x2">
+      <img src="assets/d2.jpg" alt="Aroma One integrado a columna oscura">
+      <img src="assets/d3.jpg" alt="Aroma One sobre columna en plaza">
+      <img src="assets/d4.jpg" alt="Aroma One pequeño sobre muro oscuro">
+      <img src="assets/d1.jpg" alt="Aroma One discreto sobre columna">
+    </div>
+    <div class="caption">
+      <div class="h">"Se integra<br>con la tienda."</div>
+      <div class="p">Negro sobre oscuro, blanco sobre claro. Sin pantalla frontal. Casi invisibles — el aroma sigue ahí.</div>
+    </div>
+  </div>
+  <div class="divider-line"></div>
+  <div class="title-bar">
+    <div class="k">Caso 01 · Cambio visual</div>
+    <div class="t">#333 IS Galerías <span class="em">Monterrey</span></div>
+    <div class="s">Migración completa a Aroma One · Q1 2026</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 13 — CASO 02: #162 IS Galerías GDL Plus
+     ============================================================ -->
+<section class="slide s-ba" data-label="Caso 02 IS Galerias GDL">
+  <div class="half before">
+    <div class="label">ANTES · Equipos legado</div>
+    <div class="photos grid-2x2">
+      <img src="assets/a7.jpg" alt="Caja vertical blanca sobre muro">
+      <img src="assets/a4.jpg" alt="Equipo rectangular en pared clara">
+      <img src="assets/d6.jpg" alt="Equipo blanco cuadrado voluminoso">
+      <img src="assets/a5.jpg" alt="Caja sobre franjas rojo/azul">
+    </div>
+    <div class="caption">
+      <div class="h">"Bloque visible<br>desde lejos."</div>
+      <div class="p">El equipo dominaba el punto de exhibición. Volumen, color contrastante, cable expuesto.</div>
+    </div>
+  </div>
+  <div class="half after">
+    <div class="label after">DESPUÉS · Aroma One</div>
+    <div class="photos grid-2x2">
+      <img src="assets/d2.jpg" alt="Aroma One sobre columna oscura">
+      <img src="assets/d3.jpg" alt="Aroma One en plaza">
+      <img src="assets/a9.jpg" alt="Aroma One sobre exhibidor">
+      <img src="assets/d1.jpg" alt="Aroma One discreto sobre columna">
+    </div>
+    <div class="caption">
+      <div class="h">"Ahora hay<br>que buscarlo."</div>
+      <div class="p">Menor silueta. Integración cromática con el mobiliario. El cliente siente el aroma, no ve el equipo.</div>
+    </div>
+  </div>
+  <div class="divider-line"></div>
+  <div class="title-bar">
+    <div class="k">Caso 02 · Cambio visual</div>
+    <div class="t">#162 IS Galerías GDL <span class="em">Plus</span></div>
+    <div class="s">Migración completa a Aroma One · Q1 2026</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 14 — CASO 03: #398 NBA Tezontle
+     ============================================================ -->
+<section class="slide s-ba" data-label="Caso 03 NBA Tezontle">
+  <div class="half before">
+    <div class="label">ANTES · Equipos legado</div>
+    <div class="photos grid-2x2">
+      <img src="assets/a5.jpg" alt="Equipo legado sobre columna">
+      <img src="assets/a6.jpg" alt="Equipo legado sobre muro con franjas">
+      <img src="assets/a4.jpg" alt="Equipo legado rectangular">
+      <img src="assets/d6.jpg" alt="Equipo legado voluminoso blanco">
+    </div>
+    <div class="caption">
+      <div class="h">"Fuera de escala<br>con la tienda."</div>
+      <div class="p">Equipos de generaciones previas interferían con el lenguaje visual del banner deportivo.</div>
+    </div>
+  </div>
+  <div class="half after">
+    <div class="label after">DESPUÉS · Aroma One</div>
+    <div class="photos grid-2x2">
+      <img src="assets/a10.jpg" alt="Aroma One discreto sobre mostrador">
+      <img src="assets/a9.jpg" alt="Aroma One sobre exhibidor">
+      <img src="assets/d4.jpg" alt="Aroma One pequeño sobre muro oscuro">
+      <img src="assets/d2.jpg" alt="Aroma One sobre columna oscura">
+    </div>
+    <div class="caption">
+      <div class="h">"Pieza discreta,<br>no protagónica."</div>
+      <div class="p">Aroma One se adapta al mobiliario de NBA Tezontle sin romper la narrativa retail.</div>
+    </div>
+  </div>
+  <div class="divider-line"></div>
+  <div class="title-bar">
+    <div class="k">Caso 03 · Cambio visual</div>
+    <div class="t">#398 NBA <span class="em">Tezontle</span></div>
+    <div class="s">Migración completa a Aroma One · Q1 2026</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 14 — CIERRE
+     ============================================================ -->
+<section class="slide dark s-end" data-label="Cierre">
+  <div class="brand-strip" style="color:var(--paper-on-dark-60);">
+    <div class="bl"><img src="assets/avantex-white.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex</span></div>
+    <div>§ Cierre · Gracias</div>
+  </div>
+  <div class="big">
+    Gracias,<br>
+    <span class="a italic">Innovasport.</span>
+  </div>
+  <div class="mid">
+    <div>
+      <p class="msg">Seguiremos operando con la misma exigencia que nos trajo a 99.46% de eficiencia — y acelerando la migración Aroma One para que la tecnología siga desapareciendo a la vista, no al olfato.</p>
+      <div style="margin-top:48px;display:flex;flex-direction:column;gap:14px;">
+        <img src="assets/avantex-white.png" alt="Grupo Avantex" style="height:44px;width:auto;display:block;">
+        <div style="font-family:'Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:.32em;text-transform:uppercase;color:var(--paper-on-dark);padding-left:2px;"><span style="color:var(--accent);margin-right:10px;">◆</span>Unidad Aromatex</div>
+      </div>
+    </div>
+    <div class="contact">
+      <div class="k">KAM · Innovasport</div>
+      <div class="n">Francisco Rodríguez</div>
+      <div class="rows">
+        <div class="row"><span class="l">Tel</span><span class="v">+52 81 1516 2217</span></div>
+        <div class="row"><span class="l">Email</span><span class="v">franciscorodriguez@grupoavantex.com</span></div>
+        <div class="row"><span class="l">Web</span><span class="v">aromatex.mx · grupoavantex.com</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<!-- ============================================================
+     TWEAKS PANEL
+     ============================================================ -->
+<div id="tweaks-panel">
+  <h3>Tweaks</h3>
+  <div class="group">
+    <label>Paleta</label>
+    <div class="seg" data-group="palette">
+      <button data-v="default" class="on">Mixto</button>
+      <button data-v="cream">Editorial</button>
+      <button data-v="deep">Dark</button>
+    </div>
+  </div>
+  <div class="group">
+    <label>Densidad</label>
+    <div class="seg two" data-group="density">
+      <button data-v="default" class="on">Espaciosa</button>
+      <button data-v="compact">Compacta</button>
+    </div>
+  </div>
+  <div class="group">
+    <label>Display serif</label>
+    <div class="seg two" data-group="font">
+      <button data-v="fraunces" class="on">Fraunces</button>
+      <button data-v="helvetica">Helvetica</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   TWEAKS + EDIT MODE
+   ============================================================ */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "palette": "default",
+  "density": "compact",
+  "font": "fraunces"
+}/*EDITMODE-END*/;
+
+const ds = document.querySelector('deck-stage');
+const panel = document.getElementById('tweaks-panel');
+
+function applyTweaks(t) {
+  ds.setAttribute('data-palette', t.palette);
+  ds.setAttribute('data-density', t.density);
+  if (t.font === 'helvetica') {
+    document.documentElement.style.setProperty('--display-family', '"Helvetica Neue", Helvetica, Arial, sans-serif');
+    // swap display class rendering
+    document.querySelectorAll('h1, h2, .display, .big, .eff-card .v, .year-card .big, .kpi-cell .num, .mini-kpi .val, .stat .num, .s-divider .section-title, .s-end .big, .donut-center .n, .aone-stat .v, .s-ba .caption .h, .s-ba .title-bar .t, .next-total .v, .next-row .q, .hero-kpi .num, .s-cover h1, .next-aside .h')
+      .forEach(el => { el.style.fontFamily = '"Helvetica Neue", Helvetica, Arial, sans-serif'; el.style.fontWeight = '200'; });
+  } else {
+    document.querySelectorAll('h1, h2, .display, .big, .eff-card .v, .year-card .big, .kpi-cell .num, .mini-kpi .val, .stat .num, .s-divider .section-title, .s-end .big, .donut-center .n, .aone-stat .v, .s-ba .caption .h, .s-ba .title-bar .t, .next-total .v, .next-row .q, .hero-kpi .num, .s-cover h1, .next-aside .h')
+      .forEach(el => { el.style.fontFamily = ''; el.style.fontWeight = ''; });
+  }
+}
+
+function setBtnState() {
+  panel.querySelectorAll('.seg').forEach(seg => {
+    const group = seg.dataset.group;
+    seg.querySelectorAll('button').forEach(b => {
+      b.classList.toggle('on', b.dataset.v === TWEAK_DEFAULTS[group]);
+    });
+  });
+}
+
+panel.querySelectorAll('.seg').forEach(seg => {
+  const group = seg.dataset.group;
+  seg.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const v = btn.dataset.v;
+      TWEAK_DEFAULTS[group] = v;
+      setBtnState();
+      applyTweaks(TWEAK_DEFAULTS);
+      try {
+        window.parent.postMessage({
+          type: '__edit_mode_set_keys',
+          edits: { [group]: v }
+        }, '*');
+      } catch(e) {}
+    });
+  });
+});
+
+applyTweaks(TWEAK_DEFAULTS);
+setBtnState();
+
+// Edit mode wiring — listener first, announcement after
+window.addEventListener('message', (e) => {
+  if (!e.data || !e.data.type) return;
+  if (e.data.type === '__activate_edit_mode') panel.classList.add('active');
+  else if (e.data.type === '__deactivate_edit_mode') panel.classList.remove('active');
+});
+try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(e) {}
+</script>
+
+<script>
+// Auto-print: wait for fonts + layout, then trigger print
+(async () => {
+  try { await document.fonts.ready; } catch(e) {}
+  await new Promise(r => window.addEventListener('load', r, { once: true }));
+  await new Promise(r => setTimeout(r, 800));
+  window.print();
+})();
+</script>
+
+</body>
+</html>
