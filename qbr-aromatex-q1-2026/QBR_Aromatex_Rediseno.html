@@ -872,77 +872,107 @@ deck-stage { background: #000; }
   writing-mode: horizontal-tb;
 }
 
-/* Phase progress */
-.phase-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-}
-.phase .p-head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: 14px;
-}
-.phase .p-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px; letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--paper-on-dark);
-}
-.phase.done .p-tag { color: var(--accent); }
-.phase .p-pct {
-  font-family: 'Fraunces', serif;
-  font-weight: 300; font-size: 42px;
-  color: var(--cream); letter-spacing: -.02em;
-}
-.phase.done .p-pct { color: var(--accent); }
-.phase .p-bar {
-  width: 100%; height: 4px;
-  background: rgba(244,239,227,.14);
-  border-radius: 2px;
-  overflow: hidden;
-  margin-bottom: 22px;
-}
-.phase.done .p-fill {
-  height: 100%; background: var(--accent);
-}
-.phase.next .p-fill {
-  height: 100%; background: var(--paper-on-dark);
-  opacity: .5;
-}
-.phase .p-stats {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+/* Progress: hero summary + Fase 2 city breakdown */
+.aone-progress { display: grid; grid-template-rows: auto auto; gap: 24px; }
+.ap-summary {
+  display: grid; grid-template-columns: 1fr auto; gap: 60px;
+  align-items: center;
+  padding: 22px 0;
   border-top: 1px solid var(--paper-on-dark-25);
-  padding-top: 18px;
+  border-bottom: 1px solid var(--paper-on-dark-25);
 }
-.phase .p-stats > div { display: flex; flex-direction: column; }
-.phase .p-stats .pv {
-  font-family: 'Fraunces', serif;
-  font-weight: 300; font-size: 64px;
-  line-height: 1; letter-spacing: -.03em;
-  color: var(--cream);
+.ap-hero { display: flex; gap: 56px; }
+.ap-hero .ap-pair { display: flex; align-items: baseline; gap: 16px; }
+.ap-hero .ap-n {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 86px; line-height: 0.9; letter-spacing: -0.04em;
+  color: var(--accent);
 }
-.phase.done .p-stats .pv { color: var(--cream); }
-.phase .p-stats .pl {
+.ap-hero .ap-l {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; color: var(--paper-on-dark);
+  line-height: 1.35; letter-spacing: .01em;
+  max-width: 140px;
+}
+.ap-fase1 { text-align: right; }
+.ap-fase1-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: .22em;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.ap-fase1-note {
   font-family: 'Inter', sans-serif;
   font-size: 12px;
   color: var(--paper-on-dark-60);
-  margin-top: 8px;
-  line-height: 1.3;
+  margin-top: 10px;
+  line-height: 1.5;
+  max-width: 340px;
+  margin-left: auto;
 }
-.phase .p-stats .pu {
-  font-size: 22px;
+.ap-f2-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: .22em;
   color: var(--paper-on-dark-60);
-  margin-left: 4px;
-  letter-spacing: 0;
+  text-transform: uppercase;
+  margin-bottom: 14px;
 }
-.phase .p-scope {
+.ap-cities {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.ap-city {
+  border: 1px solid var(--paper-on-dark-25);
+  border-radius: 2px;
+  padding: 22px 24px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.ap-city.strong { border-color: var(--accent); }
+.ap-city.upcoming { border-style: dashed; }
+.ap-city-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+}
+.ap-city-name {
+  font-family: 'Fraunces', serif; font-weight: 400;
+  font-size: 28px; line-height: 1; color: var(--cream);
+  letter-spacing: -0.02em;
+}
+.ap-city-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .2em;
+  color: var(--paper-on-dark-60);
+  text-transform: uppercase;
+}
+.ap-city.strong .ap-city-tag, .ap-city.upcoming .ap-city-tag { color: var(--accent); }
+.ap-city-pct {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 72px; line-height: 0.9;
+  color: var(--cream);
+  letter-spacing: -0.04em;
+}
+.ap-city.strong .ap-city-pct { color: var(--accent); }
+.ap-city.upcoming .ap-city-pct { color: var(--paper-on-dark); font-size: 38px; padding-top: 18px; }
+.ap-city-stats {
+  display: flex; flex-direction: column; gap: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--paper-on-dark-25);
   font-family: 'Inter', sans-serif;
   font-size: 13px;
   color: var(--paper-on-dark);
-  margin: -12px 0 18px;
-  letter-spacing: .01em;
+  line-height: 1.4;
 }
-.phase.done .p-scope { color: var(--accent); opacity: .9; }
+.ap-city-stats em { font-style: normal; color: var(--paper-on-dark-60); }
+.ap-city-stats .ap-upc-note {
+  font-size: 12px;
+  color: var(--paper-on-dark-60);
+  font-style: italic;
+  margin-top: 6px;
+  line-height: 1.4;
+}
 
 /* ---- SLIDE 11-12: ANTES / DESPUÉS ---- */
 .s-ba {
@@ -1716,7 +1746,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     <h2 style="color:var(--cream);font-size:72px;">Migrando a <span class="em">Aroma One</span>.</h2>
     <div style="text-align:right;padding-bottom:12px;max-width:560px;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-on-dark-60);">El plan</div>
-      <div style="font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:22px;color:var(--paper-on-dark);margin-top:10px;line-height:1.35;">Reemplazar gradualmente los difusores Pro por el nuevo Aroma One — más compacto, sin pantalla frontal, visualmente discreto.</div>
+      <div style="font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:22px;color:var(--paper-on-dark);margin-top:10px;line-height:1.35;">Reemplazar los difusores Advance Pro y Advance Acrílico por el nuevo Aroma One — más compacto, sin pantalla frontal, visualmente discreto.</div>
     </div>
   </div>
 
@@ -1751,32 +1781,62 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
 
-  <!-- Phase progress -->
-  <div class="phase-grid">
-    <div class="phase done">
-      <div class="p-head">
-        <span class="p-tag">✓ Fase 1 — completada</span>
-        <span class="p-pct">100%</span>
+  <!-- Project progress: hero + Fase 2 by city -->
+  <div class="aone-progress">
+    <div class="ap-summary">
+      <div class="ap-hero">
+        <div class="ap-pair">
+          <div class="ap-n">49</div>
+          <div class="ap-l">sucursales con<br>Aroma One</div>
+        </div>
+        <div class="ap-pair">
+          <div class="ap-n">229</div>
+          <div class="ap-l">difusores<br>instalados</div>
+        </div>
       </div>
-      <div class="p-bar"><div class="p-fill" style="width:100%;"></div></div>
-      <div class="p-scope">Sucursales 4.0 · Sucursales Insignia · Aperturas</div>
-      <div class="p-stats">
-        <div><span class="pv">49</span><span class="pl">sucursales migradas</span></div>
-        <div><span class="pv">227</span><span class="pl">equipos instalados</span></div>
-        <div><span class="pv">100%</span><span class="pl">del alcance Fase 1</span></div>
+      <div class="ap-fase1">
+        <div class="ap-fase1-badge">✓ Fase 1 · 100%</div>
+        <div class="ap-fase1-note">14 sucursales · 103 difusores · Sucursales 4.0, Insignia, Aperturas</div>
       </div>
     </div>
-    <div class="phase next">
-      <div class="p-head">
-        <span class="p-tag">Fase 2 — en curso Q2–Q4</span>
-        <span class="p-pct">59%</span>
-      </div>
-      <div class="p-bar light"><div class="p-fill next-fill" style="width:59%;"></div></div>
-      <div class="p-scope">Resto del portafolio Innovasport</div>
-      <div class="p-stats">
-        <div><span class="pv">101<span class="pu">/ 150</span></span><span class="pl">sucursales por migrar</span></div>
-        <div><span class="pv">326<span class="pu">/ 553</span></span><span class="pl">equipos pendientes</span></div>
-        <div><span class="pv">7</span><span class="pl">aperturas Q2 con Aroma One</span></div>
+
+    <div>
+      <div class="ap-f2-label">Fase 2 · en ejecución por ciudad</div>
+      <div class="ap-cities">
+        <div class="ap-city strong">
+          <div class="ap-city-head">
+            <div class="ap-city-name">Monterrey</div>
+            <div class="ap-city-tag">En avance</div>
+          </div>
+          <div class="ap-city-pct">64%</div>
+          <div class="ap-city-stats">
+            <span>23 <em>/ 42</em> sucursales</span>
+            <span>83 <em>/ 129</em> difusores</span>
+          </div>
+        </div>
+        <div class="ap-city strong">
+          <div class="ap-city-head">
+            <div class="ap-city-name">Guadalajara</div>
+            <div class="ap-city-tag">Recta final</div>
+          </div>
+          <div class="ap-city-pct">81%</div>
+          <div class="ap-city-stats">
+            <span>12 <em>/ 15</em> sucursales</span>
+            <span>43 <em>/ 53</em> difusores</span>
+          </div>
+        </div>
+        <div class="ap-city upcoming">
+          <div class="ap-city-head">
+            <div class="ap-city-name">CDMX</div>
+            <div class="ap-city-tag">Próximo release · H2</div>
+          </div>
+          <div class="ap-city-pct">Q3–Q4</div>
+          <div class="ap-city-stats">
+            <span>78 <em>sucursales</em></span>
+            <span>268 <em>difusores</em></span>
+            <span class="ap-upc-note">El despliegue más grande del proyecto.</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
