@@ -467,7 +467,7 @@ deck-stage { background: #000; }
 }
 .chart {
   position: relative;
-  padding: 40px 30px 60px 80px;
+  padding: 40px 30px 90px 80px;
   border: 1px solid var(--ink-15);
   background: rgba(255,255,255,.4);
   border-radius: 2px;
@@ -491,6 +491,17 @@ deck-stage { background: #000; }
   color: var(--ink-60);
   letter-spacing: 0.15em;
   text-transform: uppercase;
+}
+.chart .x-lab > span {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.chart .x-lab .eff {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--deep);
 }
 .chart-side {
   display: flex; flex-direction: column; gap: 20px;
@@ -1483,21 +1494,22 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
           <rect x="360" y="200" width="180" height="300" fill="#143F36" opacity=".9"/>
           <rect x="630" y="450" width="180" height="50"  fill="#D4E157" opacity="1"/>
         </g>
-        <!-- Efficiency % above each bar (the hero metric) -->
-        <g font-family="Fraunces, serif" font-size="48" font-weight="300" fill="#0D1F1B" text-anchor="middle">
-          <text x="180" y="80">99.14%</text>
-          <text x="450" y="180">99.35%</text>
-          <text x="720" y="430">99.89%</text>
+        <!-- Incidencias count above each bar (matches bar height = Y axis) -->
+        <g font-family="Fraunces, serif" font-size="56" font-weight="300" fill="#0D1F1B" text-anchor="middle">
+          <text x="180" y="70">8</text>
+          <text x="450" y="170">6</text>
+          <text x="720" y="420">1</text>
         </g>
-        <!-- Incidencias count (secondary) -->
-        <g font-family="JetBrains Mono, monospace" font-size="14" fill="#0D1F1B" opacity=".6" text-anchor="middle" letter-spacing="2">
-          <text x="180" y="40">8 INCIDENCIAS</text>
-          <text x="450" y="40">6 INCIDENCIAS</text>
-          <text x="720" y="40">1 INCIDENCIA</text>
+        <g font-family="JetBrains Mono, monospace" font-size="13" fill="#0D1F1B" opacity=".55" text-anchor="middle" letter-spacing="2">
+          <text x="180" y="92">INCIDENCIAS</text>
+          <text x="450" y="192">INCIDENCIAS</text>
+          <text x="720" y="442">INCIDENCIA</text>
         </g>
       </svg>
       <div class="x-lab">
-        <span>Enero</span><span>Febrero</span><span>Marzo</span>
+        <span><span class="eff">99.14%</span>Enero</span>
+        <span><span class="eff">99.35%</span>Febrero</span>
+        <span><span class="eff">99.89%</span>Marzo</span>
       </div>
     </div>
     <div class="chart-side">
