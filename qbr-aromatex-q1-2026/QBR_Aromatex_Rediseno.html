@@ -214,6 +214,25 @@ deck-stage { background: #000; }
   font-variation-settings: "opsz" 144, "SOFT" 30;
 }
 .s-cover h1 .it { font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100; font-weight: 300; }
+.s-cover .pdf-dl {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper-on-dark-60);
+  text-decoration: none;
+  padding: 7px 12px;
+  border: 1px solid var(--paper-on-dark-25);
+  border-radius: 2px;
+  transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+.s-cover .pdf-dl:hover {
+  color: var(--cream);
+  border-color: var(--accent);
+  background: rgba(212,225,87,0.08);
+}
+@media print { .s-cover .pdf-dl { display: none !important; } }
 .s-cover .hero-stats {
   grid-column: 2;
   align-self: end;
@@ -1185,6 +1204,61 @@ deck-stage { background: #000; }
   margin-top: 4px;
 }
 
+/* ---- SLIDE Q&A: DUDAS ---- */
+.s-qa {
+  padding: 96px;
+  display: flex; flex-direction: column;
+  background: var(--cream);
+}
+.s-qa .qa-head { margin-top: 40px; }
+.s-qa .qa-head .k {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  margin-bottom: 28px;
+}
+.s-qa .qa-head h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 148px;
+  line-height: 0.94;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0;
+}
+.s-qa .qa-head h2 .em { font-style: italic; color: var(--deep); }
+.s-qa .qa-topics {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  padding-top: 56px;
+  border-top: 1px solid var(--ink-15);
+}
+.s-qa .qa-topics .topic .n {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--deep);
+  margin-bottom: 14px;
+}
+.s-qa .qa-topics .topic .t {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.22;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.s-qa .qa-topics .topic .p {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-60);
+}
+
 /* ---- SLIDE 16: CIERRE ---- */
 .s-end { padding: 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 60px; }
 .s-end .big {
@@ -1312,6 +1386,64 @@ deck-stage[data-palette="deep"] .slide:not(.dark) .kpi-cell .name { color: var(-
 deck-stage[data-density="compact"] .s-kpi .kpi-cell { min-height: 300px; padding: 32px 28px 28px; }
 deck-stage[data-density="compact"] .s-kpi .kpi-cell .num { font-size: 130px; }
 deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
+
+/* ============================================================
+   ENTRANCE ANIMATIONS (live presentation)
+   Triggered via IntersectionObserver; disabled in print & for
+   prefers-reduced-motion users.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .slide.is-animated {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 600ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .slide.is-animated.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Staggered content reveal inside each slide once it's visible */
+  .slide.is-animated.is-visible > *:not(.brand-strip):not(.folio) {
+    animation: qbrFadeUp 700ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+  .slide.is-animated.is-visible > *:nth-child(2) { animation-delay: 120ms; }
+  .slide.is-animated.is-visible > *:nth-child(3) { animation-delay: 220ms; }
+  .slide.is-animated.is-visible > *:nth-child(4) { animation-delay: 320ms; }
+  .slide.is-animated.is-visible > *:nth-child(5) { animation-delay: 400ms; }
+  .slide.is-animated.is-visible > *:nth-child(6) { animation-delay: 480ms; }
+  /* Chart bars: grow from baseline */
+  .s-eff.is-visible svg rect {
+    animation: qbrBarGrow 900ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    transform-origin: center bottom;
+    transform-box: fill-box;
+  }
+  .s-eff.is-visible svg rect:nth-of-type(1) { animation-delay: 320ms; }
+  .s-eff.is-visible svg rect:nth-of-type(2) { animation-delay: 440ms; }
+  .s-eff.is-visible svg rect:nth-of-type(3) { animation-delay: 560ms; }
+  @keyframes qbrFadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes qbrBarGrow {
+    from { transform: scaleY(0); opacity: 0.4; }
+    to   { transform: scaleY(1); opacity: 0.9; }
+  }
+}
+/* PDF / print: always show everything, no animation */
+@media print {
+  .slide.is-animated { opacity: 1 !important; transform: none !important; }
+  .slide.is-animated > * { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+/* If JS is disabled or pdf mode, show everything */
+body.pdf-mode .slide.is-animated,
+body.pdf-mode .slide.is-animated > * {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
 </style>
 
 <!-- Speaker notes (opcional, una línea por slide) -->
@@ -1330,7 +1462,13 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
       <img class="avx" src="project/assets/avantex-white.png" alt="Grupo Avantex">
       <div class="sub"><span class="mark">◆</span>Unidad <span class="plus">/</span>Aromatex</div>
     </div>
-    <div class="kicker muted">Q1 · 2026 · Confidencial</div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:14px;">
+      <div class="kicker muted">Q1 · 2026 · Confidencial</div>
+      <a href="QBR_Aromatex_Q1_2026.pdf" download class="pdf-dl" aria-label="Descargar presentación en PDF">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 1.5v7m0 0L3.5 6M6 8.5 8.5 6"/><path d="M2 10h8" opacity=".7"/></svg>
+        Descargar PDF
+      </a>
+    </div>
   </div>
 
   <div class="title">
@@ -1389,7 +1527,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
   <div class="folio l">01 · QBR Q1 2026</div>
-  <div class="folio r">02 / 14</div>
+  <div class="folio r">02 / 15</div>
 </section>
 
 <!-- ============================================================
@@ -1404,7 +1542,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
   </div>
   <div style="display:flex;justify-content:space-between;align-items:end;">
     <p class="section-sub">765 servicios programados y ejecutados. 15 incidencias reportadas — todas resueltas. Un trimestre con mejora sostenida mes a mes.</p>
-    <div class="folio r" style="position:static;">03 / 14</div>
+    <div class="folio r" style="position:static;">03 / 15</div>
   </div>
 </section>
 
@@ -1457,7 +1595,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
   <div class="folio l">02 · Sección I · Resumen</div>
-  <div class="folio r">04 / 14</div>
+  <div class="folio r">04 / 15</div>
 </section>
 
 <!-- ============================================================
@@ -1526,7 +1664,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
   <div class="folio l">02 · Sección I · Eficiencia</div>
-  <div class="folio r">05 / 14</div>
+  <div class="folio r">05 / 15</div>
 </section>
 
 <!-- ============================================================
@@ -1582,7 +1720,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
   <div class="folio l" style="color:var(--paper-on-dark-60);">02 · Sección I · Año contra año</div>
-  <div class="folio r" style="color:var(--paper-on-dark-60);">06 / 14</div>
+  <div class="folio r" style="color:var(--paper-on-dark-60);">06 / 15</div>
 </section>
 
 <!-- ============================================================
@@ -1656,7 +1794,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </tbody>
   </table>
   <div class="folio l">02 · Sección I · Sucursales</div>
-  <div class="folio r">07 / 14</div>
+  <div class="folio r">07 / 15</div>
 </section>
 
 <!-- ============================================================
@@ -1671,7 +1809,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
   </div>
   <div style="display:flex;justify-content:space-between;align-items:end;">
     <p class="section-sub">2 aperturas, 1 cierre y 8 sucursales migradas de Aroma Advance Pro / Acrílico a Aroma One. Balance neto +1 en sucursales, 49 ya con Aroma One y 68 equipos más por desplegar en Q2.</p>
-    <div class="folio r" style="position:static;">08 / 14</div>
+    <div class="folio r" style="position:static;">08 / 15</div>
   </div>
 </section>
 
@@ -1715,7 +1853,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
   <div class="folio l">03 · Sección II · Próximas aperturas</div>
-  <div class="folio r">09 / 14</div>
+  <div class="folio r">09 / 15</div>
 </section>
 
 <!-- ============================================================
@@ -1834,7 +1972,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
   </div>
 
   <div class="folio l" style="color:var(--paper-on-dark-60);">03 · Sección II · Aroma One</div>
-  <div class="folio r" style="color:var(--paper-on-dark-60);">10 / 14</div>
+  <div class="folio r" style="color:var(--paper-on-dark-60);">10 / 15</div>
 </section>
 
 <!-- ============================================================
@@ -1949,7 +2087,45 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
   <div class="folio l">04 · Hacia adelante</div>
-  <div class="folio r">13 / 14</div>
+  <div class="folio r">13 / 15</div>
+</section>
+
+<!-- ============================================================
+     SLIDE — Q&A / DUDAS
+     ============================================================ -->
+<section class="slide s-qa" data-label="Dudas">
+  <div class="brand-strip">
+    <div class="bl"><img src="project/assets/avantex-dark.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex · Cierre</span></div>
+    <div>§ Q&amp;A — Dudas</div>
+  </div>
+  <div class="qa-head">
+    <div class="k">Abrimos el espacio</div>
+    <h2>¿Dudas, <span class="em">comentarios,</span><br>discusión?</h2>
+  </div>
+  <div class="qa-topics">
+    <div class="topic">
+      <div class="n">01</div>
+      <div class="t">Eficiencia &amp; SLA</div>
+      <div class="p">99.46% promedio Q1 · detalle por sucursal · targets Q2.</div>
+    </div>
+    <div class="topic">
+      <div class="n">02</div>
+      <div class="t">Migración Aroma One</div>
+      <div class="p">Fases pendientes · calendario · estandarización del parque.</div>
+    </div>
+    <div class="topic">
+      <div class="n">03</div>
+      <div class="t">Próximas aperturas</div>
+      <div class="p">Setup Q2 · logística de arranque · selección de esencias.</div>
+    </div>
+    <div class="topic">
+      <div class="n">04</div>
+      <div class="t">Proyectos en discusión</div>
+      <div class="p">Prioridades · timelines · presupuestos.</div>
+    </div>
+  </div>
+  <div class="folio l">05 · Cierre</div>
+  <div class="folio r">14 / 15</div>
 </section>
 
 <!-- ============================================================
@@ -2079,6 +2255,40 @@ window.addEventListener('message', (e) => {
   else if (e.data.type === '__deactivate_edit_mode') panel.classList.remove('active');
 });
 try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(e) {}
+</script>
+
+<!-- Entrance animations for live presentation -->
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var pdfMode = params.get('pdf') === '1';
+  if (pdfMode) { document.body.classList.add('pdf-mode'); return; }
+
+  var slides = document.querySelectorAll('.slide');
+  slides.forEach(function (s) { s.classList.add('is-animated'); });
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || !('IntersectionObserver' in window)) {
+    slides.forEach(function (s) { s.classList.add('is-visible'); });
+    return;
+  }
+
+  // Show first slide immediately (no wait for scroll)
+  if (slides[0]) slides[0].classList.add('is-visible');
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+
+  slides.forEach(function (s) {
+    if (!s.classList.contains('is-visible')) io.observe(s);
+  });
+})();
 </script>
 
 </body>
