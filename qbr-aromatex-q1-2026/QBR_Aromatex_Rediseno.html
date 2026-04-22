@@ -1044,7 +1044,73 @@ deck-stage { background: #000; }
   line-height: 1.5;
 }
 
-/* ---- SLIDE 13: CIERRE ---- */
+/* ---- SLIDE 15: PROYECTOS EN DISCUSIÓN ---- */
+.s-proj { padding: 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 50px; }
+.s-proj .head {
+  display: grid; grid-template-columns: 2fr 1fr; gap: 60px; align-items: end;
+}
+.s-proj h2 {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 96px; line-height: 0.95; letter-spacing: -0.03em;
+  max-width: 1400px;
+}
+.s-proj h2 .em { font-style: italic; color: var(--accent-2); }
+.s-proj .intro {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 22px; line-height: 1.45; color: var(--ink-60);
+  max-width: 420px; padding-bottom: 14px;
+}
+.proj-list { border-top: 1px solid var(--ink-15); }
+.proj-item {
+  display: grid;
+  grid-template-columns: 100px 1fr 280px;
+  gap: 40px;
+  padding: 44px 0;
+  border-bottom: 1px solid var(--ink-15);
+  align-items: start;
+}
+.proj-item .proj-num {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 72px; line-height: 1; color: var(--ink-40);
+  letter-spacing: -0.03em;
+}
+.proj-item .proj-content {
+  display: flex; flex-direction: column; gap: 16px;
+  max-width: 1000px;
+}
+.proj-item .proj-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--accent-2);
+  font-weight: 500;
+}
+.proj-item .proj-name {
+  font-family: 'Fraunces', serif; font-weight: 400;
+  font-size: 60px; line-height: 1; letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.proj-item .proj-body {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 22px; line-height: 1.45; color: var(--ink-60);
+}
+.proj-item .proj-meta {
+  display: flex; flex-direction: column; gap: 14px;
+  padding-top: 22px;
+  border-top: 1px solid var(--ink-15);
+}
+.proj-item .proj-meta .mk {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-40);
+}
+.proj-item .proj-meta .mv {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px; font-weight: 500;
+  color: var(--ink);
+  margin-top: 4px;
+}
+
+/* ---- SLIDE 16: CIERRE ---- */
 .s-end { padding: 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 60px; }
 .s-end .big {
   font-family: 'Fraunces', serif; font-weight: 300;
@@ -1226,7 +1292,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     <div>
       <span class="kicker muted" style="display:block;margin-bottom:24px;">Sobre nosotros</span>
       <h2>Tu socio<br>en <span class="em">gestión de<br>espacios</span>.</h2>
-      <p class="lead" style="margin-top:40px;">Optimizamos instalaciones comerciales a nivel nacional con soluciones integrales de aroma, control de plagas y limpieza — respaldadas por tecnología propia y operación en 31 estados.</p>
+      <p class="lead" style="margin-top:40px;">Optimizamos instalaciones comerciales a nivel nacional con soluciones integrales de aroma, control de plagas y limpieza — respaldadas por tecnología propia y cobertura en los 32 estados.</p>
     </div>
     <div class="stats-col">
       <div class="stat">
@@ -1234,7 +1300,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
         <div class="lab">Años de experiencia</div>
       </div>
       <div class="stat">
-        <div class="num">31</div>
+        <div class="num">32</div>
         <div class="lab">Estados de cobertura</div>
       </div>
       <div class="stat">
@@ -1248,7 +1314,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
   <div class="folio l">01 · QBR Q1 2026</div>
-  <div class="folio r">02 / 15</div>
+  <div class="folio r">02 / 16</div>
 </section>
 
 <!-- ============================================================
@@ -1263,7 +1329,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
   </div>
   <div style="display:flex;justify-content:space-between;align-items:end;">
     <p class="section-sub">765 servicios programados y ejecutados. 15 incidencias reportadas — todas resueltas. Un trimestre con mejora sostenida mes a mes.</p>
-    <div class="folio r" style="position:static;">03 / 15</div>
+    <div class="folio r" style="position:static;">03 / 16</div>
   </div>
 </section>
 
@@ -1316,7 +1382,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
   <div class="folio l">02 · Sección I · Resumen</div>
-  <div class="folio r">04 / 15</div>
+  <div class="folio r">04 / 16</div>
 </section>
 
 <!-- ============================================================
@@ -1328,7 +1394,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     <div>§ 04 — Eficiencia mensual</div>
   </div>
   <div class="head">
-    <h2>La tendencia<br><span class="em">a la alza.</span></h2>
+    <h2>La tendencia<br><span class="em">a la baja.</span></h2>
     <p class="intro">De 8 incidencias en enero a una sola en marzo. Cerramos el trimestre con 99.89% de eficiencia, 75 puntos base por encima del promedio trimestral.</p>
   </div>
   <div class="chart-area">
@@ -1384,7 +1450,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
   <div class="folio l">02 · Sección I · Eficiencia</div>
-  <div class="folio r">05 / 15</div>
+  <div class="folio r">05 / 16</div>
 </section>
 
 <!-- ============================================================
@@ -1440,7 +1506,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
   <div class="folio l" style="color:var(--paper-on-dark-60);">02 · Sección I · Año contra año</div>
-  <div class="folio r" style="color:var(--paper-on-dark-60);">06 / 15</div>
+  <div class="folio r" style="color:var(--paper-on-dark-60);">06 / 16</div>
 </section>
 
 <!-- ============================================================
@@ -1514,7 +1580,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </tbody>
   </table>
   <div class="folio l">02 · Sección I · Sucursales</div>
-  <div class="folio r">07 / 15</div>
+  <div class="folio r">07 / 16</div>
 </section>
 
 <!-- ============================================================
@@ -1528,8 +1594,8 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     <div class="section-title">Hacia<br>dónde <span class="accent">vamos.</span></div>
   </div>
   <div style="display:flex;justify-content:space-between;align-items:end;">
-    <p class="section-sub">Balance neto +9 sucursales, 49 migradas a Aroma One y 68 equipos más por desplegar en Q2. El portafolio Innovasport sigue creciendo — y modernizándose.</p>
-    <div class="folio r" style="position:static;">08 / 15</div>
+    <p class="section-sub">2 aperturas, 1 cierre y 8 sucursales migradas a Aroma One. Balance neto +1 en sucursales, 49 ya en la nueva plataforma y 68 equipos más por desplegar en Q2.</p>
+    <div class="folio r" style="position:static;">08 / 16</div>
   </div>
 </section>
 
@@ -1541,7 +1607,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     <div class="bl"><img src="project/assets/avantex-dark.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex · Sección II</span></div>
     <div>§ 08 — Movimientos Q1</div>
   </div>
-  <h2>Aperturas, integración<br>y cierre — <span class="em">balance neto +9</span>.</h2>
+  <h2>Aperturas, integración<br>y cierre — <span class="em">balance neto +1</span>.</h2>
   <div class="mov-grid">
     <div class="mov-col open">
       <div class="mov-head">
@@ -1592,7 +1658,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
   </div>
   <div class="folio l">03 · Sección II · Movimientos</div>
-  <div class="folio r">09 / 15</div>
+  <div class="folio r">09 / 16</div>
 </section>
 
 <!-- ============================================================
@@ -1628,14 +1694,14 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     </div>
     <div class="next-aside">
       <div>
-        <div class="k">Nota estratégica</div>
-        <div class="h">"El 71% del sembrado propuesto ya trae Aroma One de serie."</div>
+        <div class="k">Plataforma</div>
+        <div class="h">7 de 7 aperturas<br>con Aroma One de serie.</div>
       </div>
-      <p class="p">Las siete aperturas nuevas de Q2 se entregarán con la plataforma Aroma One. Reducimos visibilidad del equipo, incidencias proyectadas y tiempo de instalación.</p>
+      <p class="p">48 de los 68 equipos (71%) ya son Aroma One. La plataforma nueva se vuelve el estándar en las aperturas de Q2 — menos visibilidad del equipo, menos incidencias proyectadas, instalación más rápida.</p>
     </div>
   </div>
   <div class="folio l">03 · Sección II · Próximas aperturas</div>
-  <div class="folio r">10 / 15</div>
+  <div class="folio r">10 / 16</div>
 </section>
 
 <!-- ============================================================
@@ -1650,7 +1716,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
     <h2 style="color:var(--cream);font-size:72px;">Migrando a <span class="em">Aroma One</span>.</h2>
     <div style="text-align:right;padding-bottom:12px;max-width:560px;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-on-dark-60);">El plan</div>
-      <div style="font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:22px;color:var(--paper-on-dark);margin-top:10px;line-height:1.35;">Reemplazar gradualmente los difusores legado por el nuevo Aroma One — más compacto, sin pantalla frontal, visualmente discreto.</div>
+      <div style="font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:22px;color:var(--paper-on-dark);margin-top:10px;line-height:1.35;">Reemplazar gradualmente los difusores Pro por el nuevo Aroma One — más compacto, sin pantalla frontal, visualmente discreto.</div>
     </div>
   </div>
 
@@ -1716,7 +1782,7 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
   </div>
 
   <div class="folio l" style="color:var(--paper-on-dark-60);">03 · Sección II · Aroma One</div>
-  <div class="folio r" style="color:var(--paper-on-dark-60);">11 / 15</div>
+  <div class="folio r" style="color:var(--paper-on-dark-60);">11 / 16</div>
 </section>
 
 <!-- ============================================================
@@ -1834,7 +1900,46 @@ deck-stage[data-density="compact"] .s-cover h1 { font-size: 200px; }
 </section>
 
 <!-- ============================================================
-     SLIDE 14 — CIERRE
+     SLIDE 15 — PROYECTOS EN DISCUSIÓN
+     ============================================================ -->
+<section class="slide s-proj" data-label="Proyectos en discusion">
+  <div class="brand-strip">
+    <div class="bl"><img src="project/assets/avantex-dark.png" alt="Avantex"><span class="bar"></span><span class="sub"><span class="mk">◆</span>Aromatex · Hacia adelante</span></div>
+    <div>§ 11 — Proyectos en discusión</div>
+  </div>
+  <div class="head">
+    <div>
+      <span class="kicker muted" style="display:block;margin-bottom:24px;">Hacia adelante</span>
+      <h2>Explorando <span class="em">nuevas líneas</span><br>con Innovasport.</h2>
+    </div>
+    <p class="intro">Conversaciones abiertas para extender la relación comercial hacia nuevos territorios de producto y experiencia sensorial.</p>
+  </div>
+  <div class="proj-list">
+    <div class="proj-item">
+      <div class="proj-num">01</div>
+      <div class="proj-content">
+        <div class="proj-status">◆ En discusión</div>
+        <div class="proj-name">Aromatex Home</div>
+        <div class="proj-body">Extender la identidad olfativa de Innovasport al hogar del consumidor final — línea residencial con difusores y fragancias diseñadas para espacios personales. Oportunidad de co-branding con la marca Innovasport.</div>
+      </div>
+      <div class="proj-meta">
+        <div>
+          <div class="mk">Fase</div>
+          <div class="mv">Exploración comercial</div>
+        </div>
+        <div>
+          <div class="mk">Próximo paso</div>
+          <div class="mv">Propuesta formal · Q2 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="folio l">04 · Hacia adelante</div>
+  <div class="folio r">15 / 16</div>
+</section>
+
+<!-- ============================================================
+     SLIDE 16 — CIERRE
      ============================================================ -->
 <section class="slide dark s-end" data-label="Cierre">
   <div class="brand-strip" style="color:var(--paper-on-dark-60);">
