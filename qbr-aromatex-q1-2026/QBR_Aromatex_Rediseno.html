@@ -1044,6 +1044,8 @@ deck-stage { background: #000; }
   width: 100%; height: 100%; object-fit: cover; display: block;
   filter: saturate(0.95);
 }
+/* Vertical 2-stack: photos are portrait; use contain so difusor stays visible */
+.s-ba .half .photos.grid-2v img { object-fit: contain; background: #111; }
 .s-ba .grid-2x2 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
 .s-ba .grid-full { grid-template-columns: 1fr; grid-template-rows: 1fr; }
 .s-ba .grid-2v { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
