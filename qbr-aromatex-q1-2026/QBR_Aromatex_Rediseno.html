@@ -832,12 +832,15 @@ deck-stage { background: #000; }
 .aone-unit .u-photo img {
   width: 100%; height: 100%; object-fit: cover; display: block;
 }
-/* New unit (Aroma One): product shot on light background, show full image */
+/* Product shots on light background so dimensions and details stay visible */
+.aone-unit.advance .u-photo,
 .aone-unit.new .u-photo { background: #E8E9EB; }
+.aone-unit.advance .u-photo img,
 .aone-unit.new .u-photo img {
   object-fit: contain;
   padding: 10px;
 }
+.aone-unit.advance .u-photo::after,
 .aone-unit.new .u-photo::after { display: none; }
 .aone-unit .u-photo::after {
   content: '';
@@ -1877,7 +1880,7 @@ body.pdf-mode .s-eff svg rect {
   <div class="aone-compare">
     <div class="aone-unit advance">
       <div class="u-label">Equipo Advance <span class="mark">— con franja negra central</span></div>
-      <div class="u-photo"><img src="project/assets/d6.jpg" alt="Difusor Advance con línea negra"></div>
+      <div class="u-photo"><img src="project/assets/advance-pro-product.png" alt="Difusor Aromatex Advance Pro — 285mm alto × 200mm ancho × 140mm profundo"></div>
       <div class="u-spec">
         <span>Volumen alto</span>
         <span class="dot">·</span>
