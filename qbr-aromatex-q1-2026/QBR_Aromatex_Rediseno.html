@@ -1112,29 +1112,28 @@ deck-stage { background: #000; }
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  background: var(--cream);
-  color: var(--ink);
+  background: transparent;
+  color: var(--cream);
   padding: 36px 56px;
-  border-radius: 2px;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,.5);
   min-width: 500px;
   max-width: 640px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.55);
 }
 .s-ba .title-bar .k {
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--ink-40);
+  color: var(--paper-on-dark-60);
 }
 .s-ba .title-bar .t {
   font-family: 'Fraunces', serif; font-weight: 300;
   font-size: 52px; line-height: 1; letter-spacing: -0.02em;
-  margin-top: 10px; color: var(--ink);
+  margin-top: 10px; color: var(--cream);
 }
-.s-ba .title-bar .t .em { font-style: italic; }
+.s-ba .title-bar .t .em { font-style: italic; color: var(--accent); }
 .s-ba .title-bar .s {
   font-family: 'Inter', sans-serif;
-  font-size: 14px; color: var(--ink-60); margin-top: 12px;
+  font-size: 14px; color: var(--paper-on-dark-60); margin-top: 12px;
   line-height: 1.5;
 }
 
